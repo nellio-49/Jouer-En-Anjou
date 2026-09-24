@@ -44,11 +44,8 @@
         .bg-wine { background-color: #722f37; }
         .bg-wine:hover { background-color: #541e24; }
         .border-wine { border-color: #722f37; }
-        .text-goblin { color: #722f37; }
-        .bg-goblin { background-color: #722f37; }
-        .bg-goblin:hover { background-color: #541e24; }
         
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #fbf7f0; }
         ::-webkit-scrollbar-thumb { background: #d4c5b0; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #722f37; }
@@ -64,8 +61,13 @@
         }
 
         .cal-day-cell {
-            min-height: 85px;
+            min-height: 48px;
             vertical-align: top;
+        }
+        @media (min-width: 640px) {
+            .cal-day-cell {
+                min-height: 85px;
+            }
         }
     </style>
 </head>
@@ -73,26 +75,26 @@
 
     <!-- En-tête avec Navigation globale -->
     <header class="header-bg shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row justify-between items-center py-4 lg:h-24 gap-4 lg:gap-0">
-                <div class="flex items-center space-x-4">
-                    <img src="JeA.webp" class="h-16 sm:h-20 w-auto object-contain" alt="Logo Jouer En Anjou" />
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center py-2.5 lg:h-24 gap-3 lg:gap-0">
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <img src="JeA.webp" class="h-12 sm:h-20 w-auto object-contain" alt="Logo Jouer En Anjou" />
                     <div>
-                        <span class="brand-font font-bold text-2xl sm:text-3xl tracking-wider text-wine drop-shadow-sm block">Jouer En Anjou</span>
-                        <span class="text-xs sm:text-sm text-[#8d6e63] font-semibold tracking-widest uppercase">Plateforme du Club</span>
+                        <span class="brand-font font-bold text-xl sm:text-3xl tracking-wider text-wine drop-shadow-sm block">Jouer En Anjou</span>
+                        <span class="text-[10px] sm:text-xs text-[#8d6e63] font-semibold tracking-widest uppercase">Plateforme du Club</span>
                     </div>
                 </div>
 
                 <!-- Navigation en haut à droite (3 Onglets) -->
-                <nav class="flex flex-wrap justify-center items-center bg-[#f0e6d2]/80 p-1.5 rounded-xl border border-[#d4c5b0] gap-1.5 shadow-sm">
-                    <button onclick="switchTab('tables-page')" id="nav-tables" class="px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center">
-                        <i class="fa-solid fa-dice-d6 mr-2"></i> Soirées Jeux
+                <nav class="flex flex-wrap justify-center items-center bg-[#f0e6d2]/80 p-1 rounded-xl border border-[#d4c5b0] gap-1 shadow-sm w-full sm:w-auto">
+                    <button onclick="switchTab('tables-page')" id="nav-tables" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center">
+                        <i class="fa-solid fa-dice-d6 mr-1.5"></i> Soirées Jeux
                     </button>
-                    <button onclick="switchTab('events-page')" id="nav-events" class="px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center">
-                        <i class="fa-solid fa-calendar-star mr-2"></i> Événements
+                    <button onclick="switchTab('events-page')" id="nav-events" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center">
+                        <i class="fa-solid fa-calendar-star mr-1.5"></i> Événements
                     </button>
-                    <button onclick="switchTab('ludo-page')" id="nav-ludo" class="px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center">
-                        <i class="fa-solid fa-boxes-stacked mr-2"></i> Ludothèque
+                    <button onclick="switchTab('ludo-page')" id="nav-ludo" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center">
+                        <i class="fa-solid fa-boxes-stacked mr-1.5"></i> Ludothèque
                     </button>
                 </nav>
             </div>
@@ -100,37 +102,37 @@
     </header>
 
     <!-- Notifications Toast -->
-    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 z-50 bg-white text-[#3e2723] px-6 py-4 rounded-lg shadow-xl border-l-4 border-[#722f37] flex items-center space-x-3 pointer-events-none">
-        <i id="toast-icon" class="fa-solid fa-bell text-[#722f37] text-xl"></i>
+    <div id="toast" class="fixed bottom-4 right-4 left-4 sm:left-auto transform translate-y-20 opacity-0 transition-all duration-300 z-50 bg-white text-[#3e2723] px-4 py-3 sm:px-6 sm:py-4 rounded-lg shadow-xl border-l-4 border-[#722f37] flex items-center space-x-3 pointer-events-none text-sm">
+        <i id="toast-icon" class="fa-solid fa-bell text-[#722f37] text-lg sm:text-xl"></i>
         <span id="toast-message" class="font-medium">Notification</span>
     </div>
 
     <!-- MODAL : Détails Événement -->
-    <div id="event-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="parchment-card max-w-lg w-full rounded-2xl shadow-2xl p-6 relative border-2 border-[#722f37]">
-            <button onclick="closeEventModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-700 text-2xl font-bold p-1 focus:outline-none">&times;</button>
+    <div id="event-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-3 sm:p-4">
+        <div class="parchment-card max-w-lg w-full rounded-2xl shadow-2xl p-4 sm:p-6 relative border-2 border-[#722f37]">
+            <button onclick="closeEventModal()" class="absolute top-2 right-3 text-gray-500 hover:text-red-700 text-2xl font-bold p-1 focus:outline-none">&times;</button>
             <div id="event-modal-content"></div>
         </div>
     </div>
 
     <!-- MODAL LUDOTHÈQUE 1 : Création de Joueur -->
-    <div id="modal-create-player" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="parchment-card max-w-md w-full rounded-2xl shadow-2xl p-6 relative border-2 border-wine">
-            <button onclick="closeCreatePlayerModal()" class="absolute top-3 right-4 text-gray-400 hover:text-red-700 text-2xl font-bold">&times;</button>
-            <h2 class="text-2xl font-bold text-[#3e2723] brand-font mb-4 flex items-center">
+    <div id="modal-create-player" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-3 sm:p-4">
+        <div class="parchment-card max-w-md w-full rounded-2xl shadow-2xl p-4 sm:p-6 relative border-2 border-wine">
+            <button onclick="closeCreatePlayerModal()" class="absolute top-2 right-3 text-gray-400 hover:text-red-700 text-2xl font-bold">&times;</button>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font mb-4 flex items-center">
                 <i class="fa-solid fa-user-shield text-wine mr-2"></i> Ajouter ma liste de joueur
             </h2>
-            <form id="form-create-player" class="space-y-4">
+            <form id="form-create-player" class="space-y-3.5 sm:space-y-4">
                 <div>
-                    <label for="new-player-name" class="block text-sm font-bold text-[#5d4037] mb-1">Votre Nom / Pseudo *</label>
-                    <input type="text" id="new-player-name" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-[#3e2723] focus:outline-none focus:border-wine" placeholder="Ex: Marc">
+                    <label for="new-player-name" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Votre Nom / Pseudo *</label>
+                    <input type="text" id="new-player-name" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine" placeholder="Ex: Marc">
                 </div>
                 <div>
-                    <label for="new-player-pin" class="block text-sm font-bold text-[#5d4037] mb-1">Code PIN secret *</label>
-                    <input type="password" id="new-player-pin" maxlength="8" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-[#3e2723] focus:outline-none focus:border-wine" placeholder="****">
-                    <p class="text-xs text-amber-800 mt-1"><i class="fa-solid fa-lock mr-1"></i>Ce code sécurise votre liste. Vous seul pourrez la modifier.</p>
+                    <label for="new-player-pin" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Code PIN secret *</label>
+                    <input type="password" id="new-player-pin" maxlength="8" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine" placeholder="****">
+                    <p class="text-[11px] text-amber-800 mt-1"><i class="fa-solid fa-lock mr-1"></i>Ce code sécurise votre liste. Vous seul pourrez la modifier.</p>
                 </div>
-                <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 rounded-lg hover:bg-[#541e24] transition-colors shadow">
+                <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 rounded-lg hover:bg-[#541e24] transition-colors shadow text-sm sm:text-base">
                     Valider et créer ma liste
                 </button>
             </form>
@@ -138,10 +140,10 @@
     </div>
 
     <!-- MODAL LUDOTHÈQUE 2 : Déverrouillage de Joueur -->
-    <div id="modal-unlock-player" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="parchment-card max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-wine">
-            <button onclick="closeUnlockModal()" class="absolute top-3 right-4 text-gray-400 hover:text-red-700 text-2xl font-bold">&times;</button>
-            <h2 class="text-xl font-bold text-[#3e2723] brand-font mb-2 flex items-center">
+    <div id="modal-unlock-player" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-3 sm:p-4">
+        <div class="parchment-card max-w-sm w-full rounded-2xl shadow-2xl p-4 sm:p-6 relative border-2 border-wine">
+            <button onclick="closeUnlockModal()" class="absolute top-2 right-3 text-gray-400 hover:text-red-700 text-2xl font-bold">&times;</button>
+            <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font mb-2 flex items-center">
                 <i class="fa-solid fa-key text-wine mr-2"></i> Déverrouiller <span id="unlock-player-title" class="ml-1 text-wine"></span>
             </h2>
             <p class="text-xs text-[#5d4037] mb-4">Entrez votre code PIN secret pour modifier.</p>
@@ -150,67 +152,67 @@
                 <div>
                     <input type="password" id="unlock-player-pin" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-[#3e2723] focus:outline-none focus:border-wine text-center text-lg tracking-widest" placeholder="****">
                 </div>
-                <button type="submit" class="w-full bg-wine text-white font-bold py-2 rounded-lg hover:bg-[#541e24] transition-colors shadow">
+                <button type="submit" class="w-full bg-wine text-white font-bold py-2 rounded-lg hover:bg-[#541e24] transition-colors shadow text-sm sm:text-base">
                     Déverrouiller
                 </button>
             </form>
         </div>
     </div>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    <main class="flex-grow max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-10 w-full">
         
         <!-- ONGLET 1 : SOIRÉES JEUX -->
         <section id="tables-page" class="tab-content active">
-            <div class="relative text-center mb-10">
-                <button onclick="switchTab('ludo-page')" class="absolute right-2 top-0 flex flex-col items-center text-[#722f37] hover:text-[#541e24] transition-all p-1 group" title="Accéder à la Ludothèque du club">
-                    <i class="fa-solid fa-box-open text-3xl sm:text-4xl text-[#8B4513] group-hover:text-[#722f37] group-hover:scale-110 transition-transform"></i>
+            <div class="relative text-center mb-6 sm:mb-10">
+                <button onclick="switchTab('ludo-page')" class="absolute right-0 top-0 flex flex-col items-center text-[#722f37] hover:text-[#541e24] transition-all p-1 group" title="Accéder à la Ludothèque du club">
+                    <i class="fa-solid fa-box-open text-2xl sm:text-4xl text-[#8B4513] group-hover:text-[#722f37] group-hover:scale-110 transition-transform"></i>
                     <span class="text-[10px] sm:text-xs font-bold brand-font text-[#5d4037] mt-1 hidden sm:block">Ludothèque</span>
                 </button>
 
-                <h1 class="text-4xl font-bold text-wine mb-4 brand-font">L'Agenda du Club</h1>
-                <p class="text-lg text-[#5d4037] max-w-2xl mx-auto font-medium">Consultez les tables prévues ou proposez la vôtre pour recruter des joueurs vaillants.</p>
+                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 sm:mb-4 brand-font">L'Agenda du Club</h1>
+                <p class="text-sm sm:text-lg text-[#5d4037] max-w-2xl mx-auto font-medium">Consultez les tables prévues ou proposez la vôtre pour recruter des joueurs vaillants.</p>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-8">
+            <div class="grid lg:grid-cols-3 gap-5 lg:gap-8">
                 <div class="lg:col-span-1">
-                    <div class="parchment-card rounded-xl p-6 sticky top-28">
-                        <h2 class="text-2xl font-bold text-[#3e2723] mb-6 border-b-2 border-[#e2d5c3] pb-3 brand-font flex items-center">
+                    <div class="parchment-card rounded-xl p-4 sm:p-6 sticky top-24">
+                        <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] mb-4 sm:mb-6 border-b-2 border-[#e2d5c3] pb-2 sm:pb-3 brand-font flex items-center">
                             <i class="fa-solid fa-feather-pointed text-[#722f37] mr-2"></i> Proposer une Table
                         </h2>
                         
-                        <form id="propose-table-form" class="space-y-5">
+                        <form id="propose-table-form" class="space-y-3.5 sm:space-y-5">
                             <div>
-                                <label for="gameName" class="block text-sm font-bold text-[#5d4037] mb-1">Nom du Jeu *</label>
-                                <input type="text" id="gameName" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Zombicide, D&D...">
+                                <label for="gameName" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Nom du Jeu *</label>
+                                <input type="text" id="gameName" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Zombicide, D&D...">
                             </div>
                             
                             <div>
-                                <label for="hostName" class="block text-sm font-bold text-[#5d4037] mb-1">Votre Nom / Pseudo (Organisateur) *</label>
-                                <input type="text" id="hostName" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Meneur / Hôte">
+                                <label for="hostName" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Votre Nom / Pseudo (Organisateur) *</label>
+                                <input type="text" id="hostName" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Meneur / Hôte">
                             </div>
 
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-2 gap-3 sm:gap-4">
                                 <div>
-                                    <label for="tableDate" class="block text-sm font-bold text-[#5d4037] mb-1">Date *</label>
-                                    <input type="date" id="tableDate" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
+                                    <label for="tableDate" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Date *</label>
+                                    <input type="date" id="tableDate" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-2.5 sm:px-3 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
                                 </div>
                                 <div>
-                                    <label for="tableTime" class="block text-sm font-bold text-[#5d4037] mb-1">Heure *</label>
-                                    <input type="time" id="tableTime" required value="18:00" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
+                                    <label for="tableTime" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Heure *</label>
+                                    <input type="time" id="tableTime" required value="18:00" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-2.5 sm:px-3 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
                                 </div>
                             </div>
 
                             <div>
-                                <label for="maxPlayers" class="block text-sm font-bold text-[#5d4037] mb-1">Nombre de joueurs max *</label>
-                                <input type="number" id="maxPlayers" min="1" max="20" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : 5">
+                                <label for="maxPlayers" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Nombre de joueurs max *</label>
+                                <input type="number" id="maxPlayers" min="1" max="20" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : 5">
                             </div>
                             
                             <div>
-                                <label for="description" class="block text-sm font-bold text-[#5d4037] mb-1">Description (Optionnel)</label>
-                                <textarea id="description" rows="3" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Campagne niv 1, ou extension incluse..."></textarea>
+                                <label for="description" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Description (Optionnel)</label>
+                                <textarea id="description" rows="2" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Campagne niv 1, ou extension incluse..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-wine text-white font-bold py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-lg mt-4">
+                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3">
                                 <i class="fa-solid fa-scroll mr-2"></i> Placarder l'annonce
                             </button>
                         </form>
@@ -218,20 +220,20 @@
                 </div>
 
                 <div class="lg:col-span-2">
-                    <div class="bg-white/60 rounded-xl p-2 sm:p-6 min-h-[500px] backdrop-blur-sm border border-[#e2d5c3]">
-                        <div class="flex justify-between items-end mb-6 border-b-2 border-[#d4c5b0] pb-3 px-2 sm:px-0">
-                            <h2 class="text-2xl font-bold text-[#3e2723] brand-font"><i class="fa-regular fa-calendar-days text-[#722f37] mr-2"></i> Tables Prévues</h2>
-                            <div class="text-sm font-medium text-amber-800" id="loading-indicator">
+                    <div class="bg-white/60 rounded-xl p-3 sm:p-6 min-h-[400px] sm:min-h-[500px] backdrop-blur-sm border border-[#e2d5c3]">
+                        <div class="flex justify-between items-end mb-4 sm:mb-6 border-b-2 border-[#d4c5b0] pb-2 sm:pb-3">
+                            <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font"><i class="fa-regular fa-calendar-days text-[#722f37] mr-2"></i> Tables Prévues</h2>
+                            <div class="text-xs sm:text-sm font-medium text-amber-800" id="loading-indicator">
                                 <i class="fa-solid fa-compass fa-spin mr-1"></i> Lecture du registre...
                             </div>
                         </div>
 
-                        <div id="tables-container" class="space-y-5"></div>
+                        <div id="tables-container" class="space-y-4 sm:space-y-5"></div>
                         
-                        <div id="empty-state" class="hidden flex-col items-center justify-center py-16 text-amber-900/70">
-                            <i class="fa-solid fa-spider text-7xl mb-4 opacity-40"></i>
-                            <p class="text-xl font-bold brand-font text-amber-950/70">Le tableau des quêtes est vide.</p>
-                            <p class="text-md mt-2 font-medium">Soyez le premier à proposer une table !</p>
+                        <div id="empty-state" class="hidden flex-col items-center justify-center py-12 sm:py-16 text-amber-900/70">
+                            <i class="fa-solid fa-spider text-5xl sm:text-7xl mb-3 opacity-40"></i>
+                            <p class="text-lg sm:text-xl font-bold brand-font text-amber-950/70">Le tableau des quêtes est vide.</p>
+                            <p class="text-sm sm:text-md mt-1 font-medium">Soyez le premier à proposer une table !</p>
                         </div>
                     </div>
                 </div>
@@ -240,27 +242,27 @@
 
         <!-- ONGLET 2 : ÉVÉNEMENTS DU CLUB -->
         <section id="events-page" class="tab-content">
-            <div class="text-center mb-10">
-                <h1 class="text-4xl font-bold text-wine mb-4 brand-font">Événements du club</h1>
-                <p class="text-lg text-[#5d4037] max-w-2xl mx-auto font-medium">Planifiez et visualisez les rencontres majeures, tournois et festivités de l'association.</p>
+            <div class="text-center mb-6 sm:mb-10">
+                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 sm:mb-4 brand-font">Événements du club</h1>
+                <p class="text-sm sm:text-lg text-[#5d4037] max-w-2xl mx-auto font-medium">Planifiez et visualisez les rencontres majeures, tournois et festivités de l'association.</p>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-8">
+            <div class="grid lg:grid-cols-3 gap-5 lg:gap-8">
                 <div class="lg:col-span-1">
-                    <div class="parchment-card rounded-xl p-6 sticky top-28">
-                        <h2 class="text-2xl font-bold text-[#3e2723] mb-6 border-b-2 border-[#e2d5c3] pb-3 brand-font flex items-center">
+                    <div class="parchment-card rounded-xl p-4 sm:p-6 sticky top-24">
+                        <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] mb-4 sm:mb-6 border-b-2 border-[#e2d5c3] pb-2 sm:pb-3 brand-font flex items-center">
                             <i class="fa-solid fa-calendar-plus text-[#722f37] mr-2"></i> Créer un Événement
                         </h2>
                         
-                        <form id="propose-event-form" class="space-y-5">
+                        <form id="propose-event-form" class="space-y-3.5 sm:space-y-5">
                             <div>
-                                <label for="eventTitle" class="block text-sm font-bold text-[#5d4037] mb-1">Titre de l'événement *</label>
-                                <input type="text" id="eventTitle" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Tournoi Catan, AG...">
+                                <label for="eventTitle" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Titre de l'événement *</label>
+                                <input type="text" id="eventTitle" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Tournoi Catan, AG...">
                             </div>
 
                             <div>
-                                <label for="eventType" class="block text-sm font-bold text-[#5d4037] mb-1">Type d'événement *</label>
-                                <select id="eventType" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm font-medium">
+                                <label for="eventType" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Type d'événement *</label>
+                                <select id="eventType" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm font-medium">
                                     <option value="Tournoi">🏆 Tournoi</option>
                                     <option value="Soirée Spéciale">🎉 Soirée Spéciale</option>
                                     <option value="Assemblée / Réunion">📜 Assemblée / Réunion</option>
@@ -269,28 +271,28 @@
                                 </select>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-2 gap-3 sm:gap-4">
                                 <div>
-                                    <label for="eventDate" class="block text-sm font-bold text-[#5d4037] mb-1">Date *</label>
-                                    <input type="date" id="eventDate" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
+                                    <label for="eventDate" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Date *</label>
+                                    <input type="date" id="eventDate" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-2.5 sm:px-3 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
                                 </div>
                                 <div>
-                                    <label for="eventTime" class="block text-sm font-bold text-[#5d4037] mb-1">Heure *</label>
-                                    <input type="time" id="eventTime" required value="18:00" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
+                                    <label for="eventTime" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Heure *</label>
+                                    <input type="time" id="eventTime" required value="18:00" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-2.5 sm:px-3 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm">
                                 </div>
                             </div>
 
                             <div>
-                                <label for="eventLocation" class="block text-sm font-bold text-[#5d4037] mb-1">Lieu / Salle</label>
-                                <input type="text" id="eventLocation" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Salle Polyvalente">
+                                <label for="eventLocation" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Lieu / Salle</label>
+                                <input type="text" id="eventLocation" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Salle Polyvalente">
                             </div>
                             
                             <div>
-                                <label for="eventDescription" class="block text-sm font-bold text-[#5d4037] mb-1">Description / Détails</label>
-                                <textarea id="eventDescription" rows="3" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2.5 px-3 text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Informations complémentaires, lots, tarifs..."></textarea>
+                                <label for="eventDescription" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Description / Détails</label>
+                                <textarea id="eventDescription" rows="2" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Informations complémentaires, lots, tarifs..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-wine text-white font-bold py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-lg mt-4">
+                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3">
                                 <i class="fa-solid fa-calendar-check mr-2"></i> Ajouter au Calendrier
                             </button>
                         </form>
@@ -299,42 +301,42 @@
 
                 <div class="lg:col-span-2">
                     <div class="parchment-card rounded-xl overflow-hidden shadow-lg border border-[#d4c5b0]">
-                        <div class="bg-gradient-to-r from-[#722f37] to-[#541e24] text-white p-4 flex justify-between items-center shadow-md">
-                            <button onclick="prevMonth()" class="hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors flex items-center font-bold text-sm">
-                                <i class="fa-solid fa-chevron-left mr-1"></i> Précédent
+                        <div class="bg-gradient-to-r from-[#722f37] to-[#541e24] text-white p-3 sm:p-4 flex justify-between items-center shadow-md">
+                            <button onclick="prevMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
+                                <i class="fa-solid fa-chevron-left mr-1"></i> <span class="hidden sm:inline">Précédent</span>
                             </button>
-                            <h2 id="calendar-month-year" class="text-xl sm:text-2xl font-bold brand-font tracking-wide flex items-center">
-                                <i class="fa-regular fa-calendar-days mr-2"></i> Chargement...
+                            <h2 id="calendar-month-year" class="text-base sm:text-2xl font-bold brand-font tracking-wide flex items-center">
+                                <i class="fa-regular fa-calendar-days mr-1.5 sm:mr-2"></i> Chargement...
                             </h2>
-                            <button onclick="nextMonth()" class="hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors flex items-center font-bold text-sm">
-                                Suivant <i class="fa-solid fa-chevron-right ml-1"></i>
+                            <button onclick="nextMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
+                                <span class="hidden sm:inline">Suivant</span> <i class="fa-solid fa-chevron-right ml-1"></i>
                             </button>
                         </div>
 
-                        <div class="p-2 sm:p-4 overflow-x-auto bg-white/80">
-                            <table class="w-full border-collapse text-center table-fixed min-w-[550px]">
+                        <div class="p-1 sm:p-4 overflow-x-auto bg-white/80">
+                            <table class="w-full border-collapse text-center table-fixed min-w-[320px] sm:min-w-[550px]">
                                 <thead>
-                                    <tr class="text-xs font-bold text-[#5d4037] border-b-2 border-[#d4c5b0] bg-[#fbf7f0]/80">
-                                        <th class="py-2.5 px-1 w-10 text-gray-400 italic">n°</th>
-                                        <th class="py-2.5 px-1">Lu</th>
-                                        <th class="py-2.5 px-1">Ma</th>
-                                        <th class="py-2.5 px-1">Me</th>
-                                        <th class="py-2.5 px-1">Je</th>
-                                        <th class="py-2.5 px-1">Ve</th>
-                                        <th class="py-2.5 px-1 text-red-700">Sa</th>
-                                        <th class="py-2.5 px-1 text-red-700">Di</th>
+                                    <tr class="text-[10px] sm:text-xs font-bold text-[#5d4037] border-b-2 border-[#d4c5b0] bg-[#fbf7f0]/80">
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 w-6 sm:w-10 text-gray-400 italic">n°</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Lu</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Ma</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Me</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Je</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Ve</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 text-red-700">Sa</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 text-red-700">Di</th>
                                     </tr>
                                 </thead>
                                 <tbody id="calendar-grid-body" class="divide-y divide-[#e2d5c3]/50 text-xs sm:text-sm"></tbody>
                             </table>
                         </div>
 
-                        <div class="p-3 bg-[#fdfaf5] border-t border-[#d4c5b0] flex flex-wrap justify-center gap-3 text-xs font-bold text-[#5d4037]">
-                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-[#722f37] mr-1"></span> Tournoi</span>
-                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-amber-600 mr-1"></span> Soirée Spéciale</span>
-                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-purple-600 mr-1"></span> Assemblée / Réunion</span>
-                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-emerald-600 mr-1"></span> Festival / Salon</span>
-                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-600 mr-1"></span> Autre</span>
+                        <div class="p-2 sm:p-3 bg-[#fdfaf5] border-t border-[#d4c5b0] flex flex-wrap justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold text-[#5d4037]">
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-[#722f37] mr-1"></span> Tournoi</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-600 mr-1"></span> Soirée Spéciale</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-purple-600 mr-1"></span> Réunion</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1"></span> Festival</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-blue-600 mr-1"></span> Autre</span>
                         </div>
                     </div>
                 </div>
@@ -343,39 +345,39 @@
 
         <!-- ONGLET 3 : LUDOTHÈQUE DU CLUB -->
         <section id="ludo-page" class="tab-content">
-            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-3 sm:gap-4">
                 <div>
-                    <h1 class="text-4xl font-bold text-wine mb-2 brand-font">Ludothèque du Club</h1>
-                    <p class="text-lg text-[#5d4037] font-medium">Consultez les listes de jeux des membres et recherchez qui possède quel jeu.</p>
+                    <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-1 sm:mb-2 brand-font">Ludothèque du Club</h1>
+                    <p class="text-sm sm:text-lg text-[#5d4037] font-medium">Consultez les listes de jeux des membres et recherchez qui possède quel jeu.</p>
                 </div>
-                <button onclick="openCreatePlayerModal()" class="bg-wine hover:bg-[#541e24] text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition-all flex items-center text-sm whitespace-nowrap">
+                <button onclick="openCreatePlayerModal()" class="w-full sm:w-auto bg-wine hover:bg-[#541e24] text-white font-bold py-2 sm:py-2.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center text-xs sm:text-sm whitespace-nowrap">
                     <i class="fa-solid fa-user-plus mr-2"></i> Créer ma liste de jeux
                 </button>
             </div>
 
             <!-- Barre de Recherche Globale -->
-            <div class="parchment-card rounded-2xl p-4 sm:p-6 mb-8 border border-[#d4c5b0] shadow-md">
+            <div class="parchment-card rounded-2xl p-3.5 sm:p-6 mb-6 sm:mb-8 border border-[#d4c5b0] shadow-md">
                 <div class="relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-wine text-xl"></i>
-                    <input type="text" id="global-search-input" oninput="handleSearch()" class="w-full bg-white border-2 border-[#d4c5b0] focus:border-wine rounded-xl py-3 pl-12 pr-10 text-[#3e2723] font-medium placeholder-gray-400 focus:outline-none shadow-inner transition-colors" placeholder="Rechercher un jeu dans la ludothèque (ex: Catan, Zombicide, Carcassonne...)...">
-                    <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-wine font-bold text-lg">&times;</button>
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 transform -translate-y-1/2 text-wine text-base sm:text-xl"></i>
+                    <input type="text" id="global-search-input" oninput="handleSearch()" class="w-full bg-white border-2 border-[#d4c5b0] focus:border-wine rounded-xl py-2.5 sm:py-3 pl-10 sm:pl-12 pr-9 text-xs sm:text-base text-[#3e2723] font-medium placeholder-gray-400 focus:outline-none shadow-inner transition-colors" placeholder="Rechercher un jeu (Catan, Zombicide...)...">
+                    <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-wine font-bold text-base sm:text-lg">&times;</button>
                 </div>
 
-                <div id="search-results-container" class="hidden mt-6 pt-4 border-t border-[#e2d5c3]">
-                    <h3 class="text-lg font-bold text-wine brand-font mb-3 flex items-center">
+                <div id="search-results-container" class="hidden mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[#e2d5c3]">
+                    <h3 class="text-base sm:text-lg font-bold text-wine brand-font mb-2 sm:mb-3 flex items-center">
                         <i class="fa-solid fa-list-check mr-2"></i> Résultats de la recherche :
                     </h3>
-                    <div id="search-results-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                    <div id="search-results-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></div>
                 </div>
             </div>
 
-            <div id="players-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            <div id="players-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"></div>
 
-            <div id="empty-players-state" class="hidden flex-col items-center justify-center py-16 text-amber-900/70 parchment-card rounded-2xl border border-[#d4c5b0]">
-                <i class="fa-solid fa-chess-board text-7xl mb-4 opacity-40 text-wine"></i>
-                <p class="text-xl font-bold brand-font text-amber-950/70">Aucune liste de jeu enregistrée.</p>
-                <p class="text-sm mt-2 font-medium">Soyez le premier à ajouter votre liste !</p>
-                <button onclick="openCreatePlayerModal()" class="mt-4 bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-4 rounded-xl shadow transition-all text-sm">
+            <div id="empty-players-state" class="hidden flex-col items-center justify-center py-12 sm:py-16 text-amber-900/70 parchment-card rounded-2xl border border-[#d4c5b0]">
+                <i class="fa-solid fa-chess-board text-5xl sm:text-7xl mb-3 opacity-40 text-wine"></i>
+                <p class="text-lg sm:text-xl font-bold brand-font text-amber-950/70">Aucune liste de jeu enregistrée.</p>
+                <p class="text-xs sm:text-sm mt-1 font-medium">Soyez le premier à ajouter votre liste !</p>
+                <button onclick="openCreatePlayerModal()" class="mt-4 bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-4 rounded-xl shadow transition-all text-xs sm:text-sm">
                     ➕ Créer ma liste
                 </button>
             </div>
@@ -383,20 +385,20 @@
 
     </main>
 
-    <footer class="header-bg border-t-2 border-[#d4c5b0] mt-auto py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0 flex items-center space-x-3">
-                <img src="JeA.webp" class="h-20 w-auto object-contain" alt="Logo Jouer En Anjou" />
-                <span class="brand-font font-bold text-xl text-[#5d4037]">Jouer En Anjou © 2026</span>
+    <footer class="header-bg border-t-2 border-[#d4c5b0] mt-auto py-6 sm:py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+            <div class="flex items-center space-x-3">
+                <img src="JeA.webp" class="h-14 sm:h-20 w-auto object-contain" alt="Logo Jouer En Anjou" />
+                <span class="brand-font font-bold text-base sm:text-xl text-[#5d4037]">Jouer En Anjou © 2026</span>
             </div>
             <div class="flex space-x-6 text-[#8d6e63]">
                 <a href="https://www.facebook.com/profile.php?id=61587015673695" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Notre page Facebook">
-                    <i class="fa-brands fa-facebook text-2xl"></i>
+                    <i class="fa-brands fa-facebook text-xl sm:text-2xl"></i>
                 </a>
                 <a href="https://discord.gg/gKvQsnFkW" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Rejoindre notre Discord">
-                    <i class="fa-brands fa-discord text-2xl"></i>
+                    <i class="fa-brands fa-discord text-xl sm:text-2xl"></i>
                 </a>
-                <a href="#" class="hover:text-[#722f37] transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="#" class="hover:text-[#722f37] transition-colors"><i class="fa-brands fa-instagram text-xl sm:text-2xl"></i></a>
             </div>
         </div>
     </footer>
@@ -447,8 +449,8 @@
             const navEvents = document.getElementById('nav-events');
             const navLudo = document.getElementById('nav-ludo');
 
-            const activeClass = "px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center";
-            const inactiveClass = "px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center";
+            const activeClass = "px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center";
+            const inactiveClass = "px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center";
 
             if (navTables) navTables.className = tabId === 'tables-page' ? activeClass : inactiveClass;
             if (navEvents) navEvents.className = tabId === 'events-page' ? activeClass : inactiveClass;
@@ -467,10 +469,10 @@
             
             if (isError) {
                 toast.classList.replace('border-[#722f37]', 'border-red-600');
-                iconEl.className = "fa-solid fa-circle-exclamation text-red-600 text-xl";
+                iconEl.className = "fa-solid fa-circle-exclamation text-red-600 text-lg sm:text-xl";
             } else {
                 toast.classList.replace('border-red-600', 'border-[#722f37]');
-                iconEl.className = "fa-solid fa-bell text-[#722f37] text-xl";
+                iconEl.className = "fa-solid fa-bell text-[#722f37] text-lg sm:text-xl";
             }
 
             toast.classList.remove('translate-y-20', 'opacity-0');
@@ -654,57 +656,57 @@
                     const playersHtml = playersList.length === 0 
                         ? `<li class="text-xs text-amber-800/60 italic py-1">Aucun joueur inscrit pour le moment.</li>`
                         : playersList.map((p) => `
-                            <li class="flex justify-between items-center py-1 border-b border-[#e2d5c3]/40 last:border-0 text-sm">
-                                <span><i class="fa-solid fa-user-tag text-xs text-amber-700 mr-2"></i><strong>${p}</strong></span>
-                                <button onclick="leaveTable('${table.id}', '${p.replace(/'/g, "\\'")}')" class="text-red-500 hover:text-red-700 font-bold text-base px-2 rounded hover:bg-red-50 transition-colors" title="Se désinscrire">&times;</button>
+                            <li class="flex justify-between items-center py-1 border-b border-[#e2d5c3]/40 last:border-0 text-xs sm:text-sm">
+                                <span><i class="fa-solid fa-user-tag text-xs text-amber-700 mr-1.5"></i><strong>${p}</strong></span>
+                                <button onclick="leaveTable('${table.id}', '${p.replace(/'/g, "\\'")}')" class="text-red-500 hover:text-red-700 font-bold text-sm sm:text-base px-2 rounded hover:bg-red-50 transition-colors" title="Se désinscrire">&times;</button>
                             </li>
                         `).join('');
 
                     const card = document.createElement('div');
-                    card.className = `parchment-card p-5 sm:p-6 rounded-xl border-l-4 ${isFull ? 'border-l-red-500' : 'border-l-[#722f37]'} shadow hover:shadow-md transition-shadow relative overflow-hidden`;
+                    card.className = `parchment-card p-4 sm:p-6 rounded-xl border-l-4 ${isFull ? 'border-l-red-500' : 'border-l-[#722f37]'} shadow hover:shadow-md transition-shadow relative overflow-hidden`;
                     
                     card.innerHTML = `
-                        <div class="flex flex-col md:flex-row justify-between md:items-start gap-5">
+                        <div class="flex flex-col md:flex-row justify-between md:items-start gap-4 sm:gap-5">
                             <div class="flex-grow z-10">
                                 <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
-                                    <h3 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font">${table.gameName}</h3>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide border ${isFull ? 'bg-red-50 text-red-700 border-red-200' : 'bg-red-50 text-[#722f37] border-red-200'}">
-                                        <i class="fa-solid fa-users mr-1.5"></i> ${currentPlayersCount} / ${table.maxPlayers}
+                                    <h3 class="text-lg sm:text-2xl font-bold text-[#3e2723] brand-font">${table.gameName}</h3>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide border ${isFull ? 'bg-red-50 text-red-700 border-red-200' : 'bg-red-50 text-[#722f37] border-red-200'}">
+                                        <i class="fa-solid fa-users mr-1"></i> ${currentPlayersCount} / ${table.maxPlayers}
                                     </span>
                                 </div>
-                                <div class="text-[#5d4037] font-medium mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
-                                    <span class="flex items-center"><i class="fa-solid fa-user-tie text-amber-600 mr-2"></i> <strong>Organisé par :</strong>&nbsp;${table.hostName}</span>
-                                    <span class="flex items-center"><i class="fa-regular fa-calendar text-amber-600 mr-2"></i> ${formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}</span>
-                                    <span class="flex items-center"><i class="fa-regular fa-clock text-amber-600 mr-2"></i> ${table.time}</span>
+                                <div class="text-xs sm:text-sm text-[#5d4037] font-medium mt-2 sm:mt-3 flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-1.5 sm:gap-y-2">
+                                    <span class="flex items-center"><i class="fa-solid fa-user-tie text-amber-600 mr-1.5"></i> <strong>Hôte :</strong>&nbsp;${table.hostName}</span>
+                                    <span class="flex items-center"><i class="fa-regular fa-calendar text-amber-600 mr-1.5"></i> ${formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}</span>
+                                    <span class="flex items-center"><i class="fa-regular fa-clock text-amber-600 mr-1.5"></i> ${table.time}</span>
                                 </div>
                                 
-                                ${table.description ? `<p class="text-[#5d4037] mt-3 bg-[#fdfaf5] p-3 rounded-lg border border-[#e2d5c3] italic text-sm"><i class="fa-solid fa-quote-left text-gray-300 mr-2"></i>${table.description}</p>` : ''}
+                                ${table.description ? `<p class="text-[#5d4037] mt-2.5 sm:mt-3 bg-[#fdfaf5] p-2.5 sm:p-3 rounded-lg border border-[#e2d5c3] italic text-xs sm:text-sm"><i class="fa-solid fa-quote-left text-gray-300 mr-1.5"></i>${table.description}</p>` : ''}
 
-                                <div class="mt-4 bg-[#fbf7f0] p-3 rounded-lg border border-[#e2d5c3]">
-                                    <span class="text-xs font-bold uppercase tracking-wider text-amber-800 block mb-2"><i class="fa-solid fa-list-check mr-1"></i> Joueurs inscrits :</span>
+                                <div class="mt-3 sm:mt-4 bg-[#fbf7f0] p-2.5 sm:p-3 rounded-lg border border-[#e2d5c3]">
+                                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 block mb-1.5"><i class="fa-solid fa-list-check mr-1"></i> Joueurs inscrits :</span>
                                     <ul class="space-y-1">${playersHtml}</ul>
                                 </div>
 
                                 ${!isFull ? `
-                                    <div class="mt-4 pt-3 border-t border-[#e2d5c3]">
-                                        <label for="join-input-${table.id}" class="block text-xs font-bold text-[#5d4037] mb-1">Rejoindre cette table :</label>
+                                    <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-[#e2d5c3]">
+                                        <label for="join-input-${table.id}" class="block text-[11px] sm:text-xs font-bold text-[#5d4037] mb-1">Rejoindre cette table :</label>
                                         <div class="flex gap-2">
-                                            <input type="text" id="join-input-${table.id}" placeholder="Votre nom ou pseudo" class="flex-grow bg-white border border-[#d4c5b0] rounded-md py-1.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37]">
+                                            <input type="text" id="join-input-${table.id}" placeholder="Votre nom ou pseudo" class="flex-grow bg-white border border-[#d4c5b0] rounded-md py-1.5 px-2.5 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37]">
                                             <button onclick="joinTable('${table.id}', 'join-input-${table.id}',${table.maxPlayers})" class="bg-wine hover:bg-[#541e24] text-white font-bold text-xs px-3 py-1.5 rounded-md transition-colors shadow-sm flex items-center whitespace-nowrap">
                                                 <i class="fa-solid fa-user-plus mr-1"></i> S'inscrire
                                             </button>
                                         </div>
                                     </div>
                                 ` : `
-                                    <div class="mt-4 pt-2 text-center bg-red-50 border border-red-200 text-red-700 text-xs font-bold py-2 rounded-md">
+                                    <div class="mt-3 sm:mt-4 pt-2 text-center bg-red-50 border border-red-200 text-red-700 text-xs font-bold py-1.5 rounded-md">
                                         <i class="fa-solid fa-ban mr-1"></i> Table complète
                                     </div>
                                 `}
                             </div>
 
-                            <div class="flex flex-col space-y-3 min-w-[120px] z-10 mt-4 md:mt-0">
-                                <button onclick="deleteTable('${table.id}')" class="bg-white hover:bg-red-50 text-red-600 border-2 border-red-200 hover:border-red-600 font-bold text-xs py-2 px-3 rounded-lg transition-colors w-full shadow-sm flex justify-center items-center">
-                                    <i class="fa-solid fa-trash-can mr-2"></i> Annuler la table
+                            <div class="flex flex-col space-y-2 min-w-[120px] z-10 mt-3 md:mt-0">
+                                <button onclick="deleteTable('${table.id}')" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-600 font-bold text-xs py-1.5 sm:py-2 px-3 rounded-lg transition-colors w-full shadow-sm flex justify-center items-center">
+                                    <i class="fa-solid fa-trash-can mr-1.5"></i> Annuler la table
                                 </button>
                             </div>
                         </div>
@@ -773,32 +775,32 @@
             const formattedDate = dateObj.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
             content.innerHTML = `
-                <div class="space-y-4 text-left">
-                    <div class="flex items-center justify-between gap-2 border-b border-[#e2d5c3] pb-3">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${colorConfig.badge}">
+                <div class="space-y-3 sm:space-y-4 text-left">
+                    <div class="flex items-center justify-between gap-2 border-b border-[#e2d5c3] pb-2 sm:pb-3">
+                        <span class="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider ${colorConfig.badge}">
                             ${ev.type}
                         </span>
                         <span class="text-xs text-amber-800 font-bold"><i class="fa-regular fa-clock mr-1"></i>${ev.time}</span>
                     </div>
 
-                    <h2 class="text-2xl font-bold text-[#3e2723] brand-font">${ev.title}</h2>
+                    <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font">${ev.title}</h2>
 
-                    <div class="space-y-2 text-sm text-[#5d4037] font-medium bg-[#fbf7f0] p-3 rounded-lg border border-[#e2d5c3]">
+                    <div class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-[#5d4037] font-medium bg-[#fbf7f0] p-2.5 sm:p-3 rounded-lg border border-[#e2d5c3]">
                         <p><i class="fa-regular fa-calendar text-[#722f37] mr-2"></i><strong>Date :</strong> ${formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}</p>
                         <p><i class="fa-solid fa-location-dot text-[#722f37] mr-2"></i><strong>Lieu :</strong> ${ev.location}</p>
                     </div>
 
                     ${ev.description ? `
-                        <div class="bg-white p-3 rounded-lg border border-[#e2d5c3] text-sm italic text-[#5d4037]">
+                        <div class="bg-white p-2.5 sm:p-3 rounded-lg border border-[#e2d5c3] text-xs sm:text-sm italic text-[#5d4037]">
                             <i class="fa-solid fa-quote-left text-gray-300 mr-2"></i>${ev.description}
                         </div>
                     ` : ''}
 
-                    <div class="pt-3 border-t border-[#e2d5c3] flex justify-between items-center gap-3">
-                        <button onclick="deleteEvent('${ev.id}')" class="bg-white hover:bg-red-50 text-red-600 border-2 border-red-200 hover:border-red-600 font-bold text-xs py-2 px-3 rounded-lg transition-colors flex items-center">
-                            <i class="fa-solid fa-trash-can mr-2"></i> Supprimer l'événement
+                    <div class="pt-2 sm:pt-3 border-t border-[#e2d5c3] flex justify-between items-center gap-2 sm:gap-3">
+                        <button onclick="deleteEvent('${ev.id}')" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-600 font-bold text-xs py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-lg transition-colors flex items-center">
+                            <i class="fa-solid fa-trash-can mr-1.5"></i> Supprimer
                         </button>
-                        <button onclick="closeEventModal()" class="bg-wine text-white font-bold text-xs py-2 px-4 rounded-lg hover:bg-[#541e24] transition-colors">
+                        <button onclick="closeEventModal()" class="bg-wine text-white font-bold text-xs py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-[#541e24] transition-colors">
                             Fermer
                         </button>
                     </div>
@@ -823,7 +825,7 @@
             const month = calendarDate.getMonth();
             const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
             const monthTitle = document.getElementById('calendar-month-year');
-            if (monthTitle) monthTitle.innerHTML = `<i class="fa-regular fa-calendar-days mr-2"></i> ${monthNames[month]} ${year}`;
+            if (monthTitle) monthTitle.innerHTML = `<i class="fa-regular fa-calendar-days mr-1.5 sm:mr-2"></i> ${monthNames[month]} ${year}`;
 
             const tbody = document.getElementById('calendar-grid-body');
             if (!tbody) return;
@@ -846,13 +848,13 @@
 
                 const weekNumTd = document.createElement('td');
                 const weekNumDate = new Date(year, month, dayCounter);
-                weekNumTd.className = "py-2 px-1 text-xs text-gray-400 italic bg-[#fdfaf5] border-r border-[#e2d5c3]/50";
+                weekNumTd.className = "py-1 px-0.5 text-[10px] sm:text-xs text-gray-400 italic bg-[#fdfaf5] border-r border-[#e2d5c3]/50";
                 weekNumTd.textContent = getISOWeekNumber(weekNumDate);
                 tr.appendChild(weekNumTd);
 
                 for (let dayCol = 0; dayCol < 7; dayCol++) {
                     const td = document.createElement('td');
-                    td.className = "cal-day-cell border border-[#e2d5c3]/40 p-1 relative text-left transition-colors hover:bg-amber-50/50";
+                    td.className = "cal-day-cell border border-[#e2d5c3]/40 p-0.5 sm:p-1 relative text-left transition-colors hover:bg-amber-50/50";
 
                     if ((weekRow === 0 && dayCol < startingDay) || dayCounter > totalDays) {
                         td.className += " bg-gray-50/40 opacity-40";
@@ -861,19 +863,19 @@
                         const isToday = todayStr === dateFormatted;
 
                         const dayHeader = document.createElement('div');
-                        dayHeader.className = `text-xs font-bold ${isToday ? 'bg-[#722f37] text-white w-5 h-5 rounded-full flex items-center justify-center' : (dayCol >= 5 ? 'text-red-700' : 'text-[#3e2723]')}`;
+                        dayHeader.className = `text-[10px] sm:text-xs font-bold ${isToday ? 'bg-[#722f37] text-white w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center' : (dayCol >= 5 ? 'text-red-700' : 'text-[#3e2723]')}`;
                         dayHeader.textContent = dayCounter;
                         td.appendChild(dayHeader);
 
                         const dayEvents = currentEvents.filter(e => e.date === dateFormatted);
                         if (dayEvents.length > 0) {
                             const eventsContainer = document.createElement('div');
-                            eventsContainer.className = "mt-1 space-y-1";
+                            eventsContainer.className = "mt-0.5 sm:mt-1 space-y-0.5 sm:space-y-1";
                             dayEvents.forEach(ev => {
                                 const colorConfig = typeColorMap[ev.type] || typeColorMap['Autre'];
                                 const evBadge = document.createElement('button');
-                                evBadge.className = `w-full text-left text-[11px] font-bold p-1 rounded ${colorConfig.badge} truncate block shadow-sm hover:opacity-90 transition-opacity`;
-                                evBadge.innerHTML = `<span class="opacity-80">${ev.time}</span> ${ev.title}`;
+                                evBadge.className = `w-full text-left text-[9px] sm:text-[11px] font-bold p-0.5 sm:p-1 rounded ${colorConfig.badge} truncate block shadow-sm hover:opacity-90 transition-opacity`;
+                                evBadge.innerHTML = `<span class="opacity-80 hidden sm:inline">${ev.time}</span> ${ev.title}`;
                                 evBadge.onclick = (e) => { e.stopPropagation(); openEventModal(ev.id); };
                                 eventsContainer.appendChild(evBadge);
                             });
@@ -1052,8 +1054,8 @@
             if (matches.length === 0) {
                 if(listEl) {
                     listEl.innerHTML = `
-                        <div class="col-span-full text-center py-6 text-amber-900/60 font-medium">
-                            <i class="fa-solid fa-ghost text-3xl mb-2 block text-gray-400"></i>
+                        <div class="col-span-full text-center py-4 text-amber-900/60 font-medium text-sm">
+                            <i class="fa-solid fa-ghost text-2xl mb-1 block text-gray-400"></i>
                             Aucun jeu trouvé pour "${queryVal}".
                         </div>
                     `;
@@ -1075,17 +1077,17 @@
 
             if(listEl) {
                 listEl.innerHTML = sortedResults.map(item => `
-                    <div class="bg-white p-4 rounded-xl border border-[#d4c5b0] shadow-sm flex flex-col justify-between">
+                    <div class="bg-white p-3 sm:p-4 rounded-xl border border-[#d4c5b0] shadow-sm flex flex-col justify-between">
                         <div>
-                            <h4 class="font-bold text-wine text-base brand-font mb-2 flex items-center">
-                                <i class="fa-solid fa-dice text-amber-700 mr-2"></i>${item.displayName}
+                            <h4 class="font-bold text-wine text-sm sm:text-base brand-font mb-1.5 flex items-center">
+                                <i class="fa-solid fa-dice text-amber-700 mr-1.5"></i>${item.displayName}
                             </h4>
                             <div class="text-xs text-[#5d4037]">
                                 <span class="font-bold text-amber-900">Possédé par (${item.owners.length}) :</span>
-                                <div class="flex flex-wrap gap-1 mt-1.5">
+                                <div class="flex flex-wrap gap-1 mt-1">
                                     ${item.owners.map(owner => `
-                                        <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md font-semibold border border-amber-200">
-                                            <i class="fa-solid fa-user-tag mr-1 text-[10px]"></i>${owner}
+                                        <span class="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded-md font-semibold border border-amber-200 text-[11px]">
+                                            <i class="fa-solid fa-user-tag mr-1 text-[9px]"></i>${owner}
                                         </span>
                                     `).join('')}
                                 </div>
@@ -1125,35 +1127,35 @@
                     .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'fr', { sensitivity: 'base' }));
 
                 const card = document.createElement('div');
-                card.className = "parchment-card rounded-2xl p-4 sm:p-5 flex flex-col h-[580px] shadow-md border border-[#d4c5b0] relative overflow-hidden";
+                card.className = "parchment-card rounded-2xl p-3.5 sm:p-5 flex flex-col h-[450px] sm:h-[580px] shadow-md border border-[#d4c5b0] relative overflow-hidden";
 
                 const gamesListHtml = playerGames.length === 0 
-                    ? `<div class="text-xs text-amber-800/60 italic text-center py-8">Aucun jeu dans cette liste.</div>`
+                    ? `<div class="text-xs text-amber-800/60 italic text-center py-6">Aucun jeu dans cette liste.</div>`
                     : playerGames.map(g => `
-                        <div class="bg-white/90 p-2.5 rounded-lg border border-[#e2d5c3] shadow-sm flex justify-between items-center text-sm font-medium text-[#3e2723] hover:border-wine transition-colors">
+                        <div class="bg-white/90 p-2 sm:p-2.5 rounded-lg border border-[#e2d5c3] shadow-sm flex justify-between items-center text-xs sm:text-sm font-medium text-[#3e2723] hover:border-wine transition-colors">
                             <span class="truncate pr-2">${g.name}</span>
                             ${isUnlocked ? `
-                                <button onclick="deleteGame('${g.id}', '${player.id}')" class="text-gray-400 hover:text-red-600 font-bold text-base px-1 transition-colors" title="Retirer ce jeu">&times;</button>
+                                <button onclick="deleteGame('${g.id}', '${player.id}')" class="text-gray-400 hover:text-red-600 font-bold text-sm sm:text-base px-1 transition-colors" title="Retirer ce jeu">&times;</button>
                             ` : ''}
                         </div>
                     `).join('');
 
                 card.innerHTML = `
-                    <div class="flex justify-between items-center pb-3 mb-3 border-b-2 border-[#d4c5b0]">
+                    <div class="flex justify-between items-center pb-2.5 mb-2.5 border-b-2 border-[#d4c5b0]">
                         <div class="flex items-center space-x-2">
-                            <h3 class="text-xl font-bold text-wine brand-font truncate max-w-[130px]">${player.name}</h3>
-                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200">${playerGames.length} jeux</span>
+                            <h3 class="text-lg sm:text-xl font-bold text-wine brand-font truncate max-w-[120px] sm:max-w-[130px]">${player.name}</h3>
+                            <span class="text-[10px] sm:text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200">${playerGames.length} jeux</span>
                         </div>
                         <div class="flex items-center space-x-1">
                             ${isUnlocked ? `
-                                <button onclick="lockPlayerList('${player.id}')" class="text-emerald-800 bg-emerald-100 hover:bg-amber-100 hover:text-amber-900 px-2 py-1 rounded-md text-xs font-bold border border-emerald-300 transition-colors flex items-center shadow-sm" title="Verrouiller à nouveau">
+                                <button onclick="lockPlayerList('${player.id}')" class="text-emerald-800 bg-emerald-100 hover:bg-amber-100 hover:text-amber-900 px-2 py-1 rounded-md text-[10px] sm:text-xs font-bold border border-emerald-300 transition-colors flex items-center shadow-sm" title="Verrouiller à nouveau">
                                     <i class="fa-solid fa-lock-open mr-1"></i>Verrouiller
                                 </button>
                                 <button onclick="deletePlayerList('${player.id}')" class="text-red-500 hover:text-red-700 p-1 text-xs" title="Supprimer la liste">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             ` : `
-                                <button onclick="openUnlockModal('${player.id}', '${player.name.replace(/'/g, "\\'")}')" class="text-amber-800 hover:text-wine bg-amber-50 hover:bg-amber-100 px-2 py-1 rounded-md text-xs font-bold border border-amber-200 transition-colors" title="Déverrouiller avec PIN">
+                                <button onclick="openUnlockModal('${player.id}', '${player.name.replace(/'/g, "\\'")}')" class="text-amber-800 hover:text-wine bg-amber-50 hover:bg-amber-100 px-2 py-1 rounded-md text-[10px] sm:text-xs font-bold border border-amber-200 transition-colors" title="Déverrouiller avec PIN">
                                     <i class="fa-solid fa-lock mr-1"></i>Verrouillé
                                 </button>
                             `}
@@ -1161,19 +1163,19 @@
                     </div>
 
                     ${isUnlocked ? `
-                        <form onsubmit="event.preventDefault(); addGame('${player.id}', 'input-game-${player.id}');" class="mb-3 flex gap-2">
-                            <input type="text" id="input-game-${player.id}" placeholder="Ajouter un jeu (ou plusieurs séparés par ,)..." class="flex-grow bg-white border border-[#d4c5b0] rounded-lg py-1.5 px-3 text-xs text-[#3e2723] focus:outline-none focus:border-wine">
-                            <button type="submit" class="bg-wine hover:bg-[#541e24] text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors shadow">
+                        <form onsubmit="event.preventDefault(); addGame('${player.id}', 'input-game-${player.id}');" class="mb-2.5 flex gap-1.5 sm:gap-2">
+                            <input type="text" id="input-game-${player.id}" placeholder="Ajouter un jeu..." class="flex-grow bg-white border border-[#d4c5b0] rounded-lg py-1 px-2.5 text-xs text-[#3e2723] focus:outline-none focus:border-wine">
+                            <button type="submit" class="bg-wine hover:bg-[#541e24] text-white font-bold px-2.5 py-1 rounded-lg text-xs transition-colors shadow">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </form>
                     ` : `
-                        <div class="mb-3 p-2 bg-amber-50/60 rounded-lg border border-amber-200/60 text-[11px] text-amber-900/80 flex items-center">
-                            <i class="fa-solid fa-info-circle mr-1.5 text-amber-700"></i> Mode lecture seule. Déverrouillez avec votre PIN.
+                        <div class="mb-2.5 p-1.5 sm:p-2 bg-amber-50/60 rounded-lg border border-amber-200/60 text-[10px] sm:text-[11px] text-amber-900/80 flex items-center">
+                            <i class="fa-solid fa-info-circle mr-1 text-amber-700"></i> Mode lecture seule.
                         </div>
                     `}
 
-                    <div class="flex-1 overflow-y-auto space-y-2 pr-1">
+                    <div class="flex-1 overflow-y-auto space-y-1.5 sm:space-y-2 pr-1">
                         ${gamesListHtml}
                     </div>
                 `;
