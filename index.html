@@ -15,7 +15,6 @@
         body {
             font-family: 'Lora', serif;
             background-color: #fbf7f0; 
-            /* Voile blanc à 0.65 */
             background-image: linear-gradient(rgba(251, 247, 240, 0.65), rgba(251, 247, 240, 0.65)), url('JeA.webp');
             background-size: cover;
             background-position: center;
@@ -37,14 +36,10 @@
             border-bottom: 2px solid #d4c5b0;
             backdrop-filter: blur(4px);
         }
-        /* Teinte Rouge Vin / Bordeaux */
         .text-wine { color: #722f37; }
         .bg-wine { background-color: #722f37; }
         .bg-wine:hover { background-color: #541e24; }
         .border-wine { border-color: #722f37; }
-        .text-goblin { color: #722f37; }
-        .bg-goblin { background-color: #722f37; }
-        .bg-goblin:hover { background-color: #541e24; }
         
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #fbf7f0; }
@@ -81,7 +76,6 @@
                     </div>
                 </div>
 
-                <!-- Navigation en haut à droite (3 Onglets) -->
                 <nav class="flex flex-wrap justify-center items-center bg-[#f0e6d2]/80 p-1.5 rounded-xl border border-[#d4c5b0] gap-1.5 shadow-sm">
                     <button onclick="switchTab('tables-page')" id="nav-tables" class="px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center">
                         <i class="fa-solid fa-dice-d6 mr-2"></i> Soirées Jeux
@@ -157,10 +151,9 @@
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
         
-        <!-- ================= ONGLET 1 : SOIRÉES JEUX ================= -->
+        <!-- ONGLET 1 : SOIRÉES JEUX -->
         <section id="tables-page" class="tab-content active">
             <div class="relative text-center mb-10">
-                <!-- Icône Coffre en bois ouvrant désormais directement l'onglet Ludothèque -->
                 <button onclick="switchTab('ludo-page')" class="absolute right-2 top-0 flex flex-col items-center text-[#722f37] hover:text-[#541e24] transition-all p-1 group" title="Accéder à la Ludothèque du club">
                     <i class="fa-solid fa-box-open text-3xl sm:text-4xl text-[#8B4513] group-hover:text-[#722f37] group-hover:scale-110 transition-transform"></i>
                     <span class="text-[10px] sm:text-xs font-bold brand-font text-[#5d4037] mt-1 hidden sm:block">Ludothèque</span>
@@ -171,7 +164,6 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Formulaire de proposition de table -->
                 <div class="lg:col-span-1">
                     <div class="parchment-card rounded-xl p-6 sticky top-28">
                         <h2 class="text-2xl font-bold text-[#3e2723] mb-6 border-b-2 border-[#e2d5c3] pb-3 brand-font flex items-center">
@@ -217,7 +209,6 @@
                     </div>
                 </div>
 
-                <!-- Liste des tables -->
                 <div class="lg:col-span-2">
                     <div class="bg-white/60 rounded-xl p-2 sm:p-6 min-h-[500px] backdrop-blur-sm border border-[#e2d5c3]">
                         <div class="flex justify-between items-end mb-6 border-b-2 border-[#d4c5b0] pb-3 px-2 sm:px-0">
@@ -239,7 +230,7 @@
             </div>
         </section>
 
-        <!-- ================= ONGLET 2 : ÉVÉNEMENTS DU CLUB ================= -->
+        <!-- ONGLET 2 : ÉVÉNEMENTS DU CLUB -->
         <section id="events-page" class="tab-content">
             <div class="text-center mb-10">
                 <h1 class="text-4xl font-bold text-wine mb-4 brand-font">Événements du club</h1>
@@ -247,7 +238,6 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Formulaire d'ajout d'événement -->
                 <div class="lg:col-span-1">
                     <div class="parchment-card rounded-xl p-6 sticky top-28">
                         <h2 class="text-2xl font-bold text-[#3e2723] mb-6 border-b-2 border-[#e2d5c3] pb-3 brand-font flex items-center">
@@ -299,7 +289,6 @@
                     </div>
                 </div>
 
-                <!-- Calendrier du Club -->
                 <div class="lg:col-span-2">
                     <div class="parchment-card rounded-xl overflow-hidden shadow-lg border border-[#d4c5b0]">
                         <div class="bg-gradient-to-r from-[#722f37] to-[#541e24] text-white p-4 flex justify-between items-center shadow-md">
@@ -344,7 +333,7 @@
             </div>
         </section>
 
-        <!-- ================= ONGLET 3 : LUDOTHÈQUE DU CLUB ================= -->
+        <!-- ONGLET 3 : LUDOTHÈQUE DU CLUB -->
         <section id="ludo-page" class="tab-content">
             <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
                 <div>
@@ -372,7 +361,6 @@
                 </div>
             </div>
 
-            <!-- Grille des Joueurs -->
             <div id="players-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
             <div id="empty-players-state" class="hidden flex-col items-center justify-center py-16 text-amber-900/70 parchment-card rounded-2xl border border-[#d4c5b0]">
@@ -394,11 +382,10 @@
                 <span class="brand-font font-bold text-xl text-[#5d4037]">Jouer En Anjou © 2026</span>
             </div>
             <div class="flex space-x-6 text-[#8d6e63]">
-                <!-- Lien Facebook mis à jour -->
                 <a href="https://www.facebook.com/profile.php?id=61587015673695" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Notre page Facebook">
                     <i class="fa-brands fa-facebook text-2xl"></i>
                 </a>
-                <a href="https://discord.gg/" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Rejoindre notre Discord">
+                <a href="https://discord.gg/gKvQsnFkW" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Rejoindre notre Discord">
                     <i class="fa-brands fa-discord text-2xl"></i>
                 </a>
                 <a href="#" class="hover:text-[#722f37] transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
@@ -408,28 +395,24 @@
 
     <!-- JS Application Unifiée -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const MASTER_PIN = "9999";
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'jouer-en-anjou-v3';
-        let firebaseConfig = null;
-        
-        try {
-            if (typeof __firebase_config !== 'undefined') {
-                firebaseConfig = JSON.parse(__firebase_config);
-            } else {
-               const firebaseConfig = {
-                  apiKey: "AIzaSyCie3gb4zM7atc2SNZcXBDF2GoTIjkhdEg",
-                  authDomain: "jouer-en-anjou.firebaseapp.com",
-                  projectId: "jouer-en-anjou",
-                  storageBucket: "jouer-en-anjou.firebasestorage.app",
-                  messagingSenderId: "751049094066",
-                  appId: "1:751049094066:web:6dc1d49fc06e4cb7386aab"
-                };
-            }
-        } catch (e) { console.error(e); }
+
+        // ==========================================
+        // VOS IDENTIFIANTS FIREBASE "JOUER EN ANJOU"
+        // ==========================================
+        const firebaseConfig = {
+          apiKey: "AIzaSyCie3gb4zM7atc2SNZcXBDF2GoTIjkhdEg",
+          authDomain: "jouer-en-anjou.firebaseapp.com",
+          projectId: "jouer-en-anjou",
+          storageBucket: "jouer-en-anjou.firebasestorage.app",
+          messagingSenderId: "751049094066",
+          appId: "1:751049094066:web:6dc1d49fc06e4cb7386aab"
+        };
+        // ==========================================
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -446,10 +429,11 @@
             'Autre': { badge: 'bg-blue-600 text-white' }
         };
 
-        // Navigation entre Onglets
+        // Navigation globale entre Onglets
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
 
             const navTables = document.getElementById('nav-tables');
             const navEvents = document.getElementById('nav-events');
@@ -470,6 +454,7 @@
             const toast = document.getElementById('toast');
             const msgEl = document.getElementById('toast-message');
             const iconEl = document.getElementById('toast-icon');
+            if(!toast || !msgEl || !iconEl) return;
             msgEl.textContent = message;
             
             if (isError) {
@@ -486,23 +471,20 @@
 
         async function initAuth() {
             try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
+                await signInAnonymously(auth);
                 currentUser = auth.currentUser;
                 initFirestoreListeners();
             } catch (error) {
                 console.error("Auth error:", error);
-                document.getElementById('loading-indicator').innerHTML = "<span class='text-red-600'>Erreur de connexion</span>";
+                const loader = document.getElementById('loading-indicator');
+                if(loader) loader.innerHTML = "<span class='text-red-600'>Erreur de connexion</span>";
             }
         }
 
-        const tablesCollection = collection(db, 'artifacts', appId, 'public', 'data', 'tables');
-        const eventsCollection = collection(db, 'artifacts', appId, 'public', 'data', 'events');
-        const playersColl = collection(db, 'artifacts', appId, 'public', 'data', 'ludo_joueurs');
-        const gamesColl = collection(db, 'artifacts', appId, 'public', 'data', 'ludo_jeux');
+        const tablesCollection = collection(db, 'tables');
+        const eventsCollection = collection(db, 'events');
+        const playersColl = collection(db, 'ludo_joueurs');
+        const gamesColl = collection(db, 'ludo_jeux');
         
         let currentTables = [];
         let currentEvents = [];
@@ -551,43 +533,46 @@
         }
 
         // ================= SECTION SOIRÉES JEUX =================
-        document.getElementById('propose-table-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (!currentUser) return showToast("Connexion requise.", true);
+        const proposeTableForm = document.getElementById('propose-table-form');
+        if(proposeTableForm) {
+            proposeTableForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!currentUser) return showToast("Connexion requise.", true);
 
-            const gameName = document.getElementById('gameName').value.trim();
-            const hostName = document.getElementById('hostName').value.trim();
-            const date = document.getElementById('tableDate').value;
-            const time = document.getElementById('tableTime').value;
-            const maxPlayers = parseInt(document.getElementById('maxPlayers').value, 10);
-            const description = document.getElementById('description').value.trim();
+                const gameName = document.getElementById('gameName').value.trim();
+                const hostName = document.getElementById('hostName').value.trim();
+                const date = document.getElementById('tableDate').value;
+                const time = document.getElementById('tableTime').value;
+                const maxPlayers = parseInt(document.getElementById('maxPlayers').value, 10);
+                const description = document.getElementById('description').value.trim();
 
-            if (new Date(date + 'T' + time) < new Date()) {
-                return showToast("La date doit être dans le futur !", true);
-            }
+                if (new Date(date + 'T' + time) < new Date()) {
+                    return showToast("La date doit être dans le futur !", true);
+                }
 
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Écriture...';
-            btn.disabled = true;
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Écriture...';
+                btn.disabled = true;
 
-            try {
-                await addDoc(tablesCollection, {
-                    gameName, hostName, date, time, maxPlayers,
-                    playersList: [], description, creatorId: currentUser.uid,
-                    createdAt: new Date().toISOString()
-                });
-                showToast("Annonce placardée avec succès !");
-                e.target.reset();
-                document.getElementById('tableTime').value = "18:00";
-            } catch (error) {
-                console.error(error);
-                showToast("Erreur lors de l'ajout.", true);
-            } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        });
+                try {
+                    await addDoc(tablesCollection, {
+                        gameName, hostName, date, time, maxPlayers,
+                        playersList: [], description, creatorId: currentUser.uid,
+                        createdAt: new Date().toISOString()
+                    });
+                    showToast("Annonce placardée avec succès !");
+                    e.target.reset();
+                    document.getElementById('tableTime').value = "18:00";
+                } catch (error) {
+                    console.error(error);
+                    showToast("Erreur lors de l'ajout.", true);
+                } finally {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            });
+        }
 
         window.joinTable = async function(tableId, inputId, maxPlayers) {
             if (!currentUser) return showToast("Connexion requise.", true);
@@ -603,7 +588,7 @@
             if (playersList.includes(playerName)) return showToast("Ce nom est déjà inscrit à la table !", true);
 
             try {
-                const tableRef = doc(db, 'artifacts', appId, 'public', 'data', 'tables', tableId);
+                const tableRef = doc(db, 'tables', tableId);
                 await updateDoc(tableRef, { playersList: arrayUnion(playerName) });
                 showToast(`${playerName} a rejoint la table !`);
             } catch(e) { showToast("Erreur d'inscription.", true); }
@@ -612,7 +597,7 @@
         window.leaveTable = async function(tableId, playerName) {
             if (!currentUser) return;
             try {
-                const tableRef = doc(db, 'artifacts', appId, 'public', 'data', 'tables', tableId);
+                const tableRef = doc(db, 'tables', tableId);
                 await updateDoc(tableRef, { playersList: arrayRemove(playerName) });
                 showToast(`${playerName} s'est désinscrit.`);
             } catch(e) { showToast("Erreur lors du retrait.", true); }
@@ -621,7 +606,7 @@
         window.deleteTable = async function(tableId) {
             if (!currentUser) return;
             try {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'tables', tableId));
+                await deleteDoc(doc(db, 'tables', tableId));
                 showToast("Annonce retirée.");
             } catch(e) { showToast("Erreur de suppression.", true); }
         };
@@ -636,11 +621,9 @@
             const upcomingTables = currentTables.filter(t => new Date(t.date) >= today);
 
             if (upcomingTables.length === 0) {
-                emptyState.classList.remove('hidden');
-                emptyState.classList.add('flex');
+                if(emptyState) { emptyState.classList.remove('hidden'); emptyState.classList.add('flex'); }
             } else {
-                emptyState.classList.add('hidden');
-                emptyState.classList.remove('flex');
+                if(emptyState) { emptyState.classList.add('hidden'); emptyState.classList.remove('flex'); }
 
                 upcomingTables.forEach(table => {
                     const dateObj = new Date(table.date);
@@ -714,38 +697,41 @@
         }
 
         // ================= SECTION ÉVÉNEMENTS & CALENDRIER =================
-        document.getElementById('propose-event-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (!currentUser) return showToast("Connexion requise.", true);
+        const proposeEventForm = document.getElementById('propose-event-form');
+        if(proposeEventForm) {
+            proposeEventForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!currentUser) return showToast("Connexion requise.", true);
 
-            const title = document.getElementById('eventTitle').value.trim();
-            const type = document.getElementById('eventType').value;
-            const date = document.getElementById('eventDate').value;
-            const time = document.getElementById('eventTime').value;
-            const location = document.getElementById('eventLocation').value.trim();
-            const description = document.getElementById('eventDescription').value.trim();
+                const title = document.getElementById('eventTitle').value.trim();
+                const type = document.getElementById('eventType').value;
+                const date = document.getElementById('eventDate').value;
+                const time = document.getElementById('eventTime').value;
+                const location = document.getElementById('eventLocation').value.trim();
+                const description = document.getElementById('eventDescription').value.trim();
 
-            const btn = e.target.querySelector('button[type="submit"]');
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Écriture...';
-            btn.disabled = true;
+                const btn = e.target.querySelector('button[type="submit"]');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Écriture...';
+                btn.disabled = true;
 
-            try {
-                await addDoc(eventsCollection, {
-                    title, type, date, time, location: location || 'Au local du club',
-                    description, creatorId: currentUser.uid, createdAt: new Date().toISOString()
-                });
-                showToast("Événement ajouté au calendrier !");
-                e.target.reset();
-                document.getElementById('eventTime').value = "18:00";
-                calendarDate = new Date(date);
-                renderCalendar();
-            } catch (error) {
-                showToast("Erreur lors de l'ajout.", true);
-            } finally {
-                btn.innerHTML = '<i class="fa-solid fa-calendar-check mr-2"></i> Ajouter au Calendrier';
-                btn.disabled = false;
-            }
-        });
+                try {
+                    await addDoc(eventsCollection, {
+                        title, type, date, time, location: location || 'Au local du club',
+                        description, creatorId: currentUser.uid, createdAt: new Date().toISOString()
+                    });
+                    showToast("Événement ajouté au calendrier !");
+                    e.target.reset();
+                    document.getElementById('eventTime').value = "18:00";
+                    calendarDate = new Date(date);
+                    renderCalendar();
+                } catch (error) {
+                    showToast("Erreur lors de l'ajout.", true);
+                } finally {
+                    btn.innerHTML = '<i class="fa-solid fa-calendar-check mr-2"></i> Ajouter au Calendrier';
+                    btn.disabled = false;
+                }
+            });
+        }
 
         window.prevMonth = function() { calendarDate.setMonth(calendarDate.getMonth() - 1); renderCalendar(); };
         window.nextMonth = function() { calendarDate.setMonth(calendarDate.getMonth() + 1); renderCalendar(); };
@@ -808,7 +794,7 @@
         window.deleteEvent = async function(eventId) {
             if (!currentUser) return;
             try {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'events', eventId));
+                await deleteDoc(doc(db, 'events', eventId));
                 closeEventModal();
                 showToast("Événement supprimé.");
             } catch(e) { showToast("Erreur de suppression.", true); }
@@ -920,44 +906,50 @@
         };
         window.closeUnlockModal = () => document.getElementById('modal-unlock-player').classList.add('hidden');
 
-        document.getElementById('form-create-player').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('new-player-name').value.trim();
-            const pin = document.getElementById('new-player-pin').value.trim();
+        const formCreatePlayer = document.getElementById('form-create-player');
+        if(formCreatePlayer) {
+            formCreatePlayer.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('new-player-name').value.trim();
+                const pin = document.getElementById('new-player-pin').value.trim();
 
-            if (!name || !pin) return showToast("Veuillez remplir tous les champs.", true);
-            if (allPlayers.some(p => p.name.toLowerCase() === name.toLowerCase())) {
-                return showToast("Un joueur porte déjà ce nom !", true);
-            }
+                if (!name || !pin) return showToast("Veuillez remplir tous les champs.", true);
+                if (allPlayers.some(p => p.name.toLowerCase() === name.toLowerCase())) {
+                    return showToast("Un joueur porte déjà ce nom !", true);
+                }
 
-            try {
-                const docRef = await addDoc(playersColl, { name, pin, createdAt: new Date().toISOString() });
-                saveUnlockedPin(docRef.id, pin);
-                showToast(`Bienvenue ${name} ! Votre liste est créée.`);
-                closeCreatePlayerModal();
-                e.target.reset();
-                renderLudoUI();
-                focusGameInput(docRef.id);
-            } catch (err) { showToast("Erreur de création.", true); }
-        });
+                try {
+                    const docRef = await addDoc(playersColl, { name, pin, createdAt: new Date().toISOString() });
+                    saveUnlockedPin(docRef.id, pin);
+                    showToast(`Bienvenue ${name} ! Votre liste est créée.`);
+                    closeCreatePlayerModal();
+                    e.target.reset();
+                    renderLudoUI();
+                    focusGameInput(docRef.id);
+                } catch (err) { showToast("Erreur de création.", true); }
+            });
+        }
 
-        document.getElementById('form-unlock-player').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const playerId = document.getElementById('unlock-player-id').value;
-            const pinInput = document.getElementById('unlock-player-pin').value.trim();
-            const player = allPlayers.find(p => p.id === playerId);
+        const formUnlockPlayer = document.getElementById('form-unlock-player');
+        if(formUnlockPlayer) {
+            formUnlockPlayer.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const playerId = document.getElementById('unlock-player-id').value;
+                const pinInput = document.getElementById('unlock-player-pin').value.trim();
+                const player = allPlayers.find(p => p.id === playerId);
 
-            if (player && (player.pin === pinInput || pinInput === MASTER_PIN)) {
-                saveUnlockedPin(playerId, player.pin);
-                showToast(`Liste de ${player.name} déverrouillée !`);
-                closeUnlockModal();
-                e.target.reset();
-                renderLudoUI();
-                focusGameInput(playerId);
-            } else {
-                showToast("Code PIN incorrect !", true);
-            }
-        });
+                if (player && (player.pin === pinInput || pinInput === MASTER_PIN)) {
+                    saveUnlockedPin(playerId, player.pin);
+                    showToast(`Liste de ${player.name} déverrouillée !`);
+                    closeUnlockModal();
+                    e.target.reset();
+                    renderLudoUI();
+                    focusGameInput(playerId);
+                } else {
+                    showToast("Code PIN incorrect !", true);
+                }
+            });
+        }
 
         window.addGame = async (playerId, inputId) => {
             const input = document.getElementById(inputId);
@@ -994,7 +986,7 @@
             }
 
             try {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ludo_jeux', gameId));
+                await deleteDoc(doc(db, 'ludo_jeux', gameId));
                 showToast("Jeu retiré.");
                 focusGameInput(playerId);
             } catch (err) { showToast("Erreur de suppression.", true); }
@@ -1013,15 +1005,17 @@
             try {
                 const playerGames = allGames.filter(g => g.playerId === playerId);
                 for (const g of playerGames) {
-                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ludo_jeux', g.id));
+                    await deleteDoc(doc(db, 'ludo_jeux', g.id));
                 }
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ludo_joueurs', playerId));
+                await deleteDoc(doc(db, 'ludo_joueurs', playerId));
                 showToast(`Liste de ${player.name} supprimée.`);
             } catch (err) { showToast("Erreur lors de la suppression.", true); }
         };
 
         window.handleSearch = () => {
-            const queryVal = document.getElementById('global-search-input').value.trim().toLowerCase();
+            const input = document.getElementById('global-search-input');
+            if(!input) return;
+            const queryVal = input.value.trim().toLowerCase();
             const container = document.getElementById('search-results-container');
             const listEl = document.getElementById('search-results-list');
             const clearBtn = document.getElementById('clear-search-btn');
@@ -1038,12 +1032,14 @@
             const matches = allGames.filter(g => (g.name || '').toLowerCase().includes(queryVal));
 
             if (matches.length === 0) {
-                listEl.innerHTML = `
-                    <div class="col-span-full text-center py-6 text-amber-900/60 font-medium">
-                        <i class="fa-solid fa-ghost text-3xl mb-2 block text-gray-400"></i>
-                        Aucun jeu trouvé pour "${queryVal}".
-                    </div>
-                `;
+                if(listEl) {
+                    listEl.innerHTML = `
+                        <div class="col-span-full text-center py-6 text-amber-900/60 font-medium">
+                            <i class="fa-solid fa-ghost text-3xl mb-2 block text-gray-400"></i>
+                            Aucun jeu trouvé pour "${queryVal}".
+                        </div>
+                    `;
+                }
                 return;
             }
 
@@ -1059,25 +1055,27 @@
                 a.displayName.localeCompare(b.displayName, 'fr', { sensitivity: 'base' })
             );
 
-            listEl.innerHTML = sortedResults.map(item => `
-                <div class="bg-white p-4 rounded-xl border border-[#d4c5b0] shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-wine text-base brand-font mb-2 flex items-center">
-                            <i class="fa-solid fa-dice text-amber-700 mr-2"></i>${item.displayName}
-                        </h4>
-                        <div class="text-xs text-[#5d4037]">
-                            <span class="font-bold text-amber-900">Possédé par (${item.owners.length}) :</span>
-                            <div class="flex flex-wrap gap-1 mt-1.5">
-                                ${item.owners.map(owner => `
-                                    <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md font-semibold border border-amber-200">
-                                        <i class="fa-solid fa-user-tag mr-1 text-[10px]"></i>${owner}
-                                    </span>
-                                `).join('')}
+            if(listEl) {
+                listEl.innerHTML = sortedResults.map(item => `
+                    <div class="bg-white p-4 rounded-xl border border-[#d4c5b0] shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-wine text-base brand-font mb-2 flex items-center">
+                                <i class="fa-solid fa-dice text-amber-700 mr-2"></i>${item.displayName}
+                            </h4>
+                            <div class="text-xs text-[#5d4037]">
+                                <span class="font-bold text-amber-900">Possédé par (${item.owners.length}) :</span>
+                                <div class="flex flex-wrap gap-1 mt-1.5">
+                                    ${item.owners.map(owner => `
+                                        <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md font-semibold border border-amber-200">
+                                            <i class="fa-solid fa-user-tag mr-1 text-[10px]"></i>${owner}
+                                        </span>
+                                    `).join('')}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
         };
 
         window.clearSearch = () => {
