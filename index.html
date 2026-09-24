@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jouer En Anjou - Plateforme du Club</title>
     
+    <!-- Icône du site et pour écran d'accueil smartphone -->
+    <link rel="icon" type="image/webp" href="JeA.webp">
+    <link rel="apple-touch-icon" href="JeA.webp">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +83,7 @@
                     </div>
                 </div>
 
-                <!-- Navigation en haut à droite -->
+                <!-- Navigation en haut à droite (3 Onglets) -->
                 <nav class="flex flex-wrap justify-center items-center bg-[#f0e6d2]/80 p-1.5 rounded-xl border border-[#d4c5b0] gap-1.5 shadow-sm">
                     <button onclick="switchTab('tables-page')" id="nav-tables" class="px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center">
                         <i class="fa-solid fa-dice-d6 mr-2"></i> Soirées Jeux
@@ -389,7 +393,7 @@
                 <a href="https://www.facebook.com/profile.php?id=61587015673695" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Notre page Facebook">
                     <i class="fa-brands fa-facebook text-2xl"></i>
                 </a>
-                <a href="https://discord.gg/" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Rejoindre notre Discord">
+                <a href="https://discord.gg/gKvQsnFkW" target="_blank" rel="noopener noreferrer" class="hover:text-[#722f37] transition-colors" title="Rejoindre notre Discord">
                     <i class="fa-brands fa-discord text-2xl"></i>
                 </a>
                 <a href="#" class="hover:text-[#722f37] transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
@@ -1021,7 +1025,7 @@
                 for (const g of playerGames) {
                     await deleteDoc(doc(db, 'ludo_jeux', g.id));
                 }
-                await deleteDoc(doc(db, 'ludo_joueurs', playerId));
+                await deleteDoc(doc(doc(db, 'ludo_joueurs', playerId)));
                 showToast(`Liste de ${player.name} supprimée.`);
             } catch (err) { showToast("Erreur lors de la suppression.", true); }
         };
