@@ -174,13 +174,17 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-5 lg:gap-8">
+                <!-- Proposer une table (Volet dépliable) -->
                 <div class="lg:col-span-1">
-                    <div class="parchment-card rounded-xl p-4 sm:p-6 sticky top-24">
-                        <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] mb-4 sm:mb-6 border-b-2 border-[#e2d5c3] pb-2 sm:pb-3 brand-font flex items-center">
-                            <i class="fa-solid fa-feather-pointed text-[#722f37] mr-2"></i> Proposer une Table
-                        </h2>
+                    <div class="parchment-card rounded-xl p-4 sm:p-6 sticky top-24 transition-all">
+                        <button type="button" onclick="toggleTableForm()" class="w-full flex justify-between items-center text-left focus:outline-none group cursor-pointer">
+                            <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font flex items-center">
+                                <i class="fa-solid fa-feather-pointed text-[#722f37] mr-2"></i> Proposer une Table
+                            </h2>
+                            <i id="table-form-chevron" class="fa-solid fa-chevron-down text-[#722f37] text-lg sm:text-xl transition-transform duration-300"></i>
+                        </button>
                         
-                        <form id="propose-table-form" class="space-y-3.5 sm:space-y-5">
+                        <form id="propose-table-form" class="space-y-3.5 sm:space-y-5 hidden mt-4 pt-4 border-t border-[#e2d5c3]">
                             <div>
                                 <label for="gameName" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Nom du Jeu *</label>
                                 <input type="text" id="gameName" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Zombicide, D&D...">
@@ -248,13 +252,60 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-5 lg:gap-8">
+                <!-- 1. CALENDRIER -->
+                <div class="lg:col-span-2">
+                    <div class="parchment-card rounded-xl overflow-hidden shadow-lg border border-[#d4c5b0]">
+                        <div class="bg-gradient-to-r from-[#722f37] to-[#541e24] text-white p-3 sm:p-4 flex justify-between items-center shadow-md">
+                            <button onclick="prevMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
+                                <i class="fa-solid fa-chevron-left mr-1"></i> <span class="hidden sm:inline">Précédent</span>
+                            </button>
+                            <h2 id="calendar-month-year" class="text-base sm:text-2xl font-bold brand-font tracking-wide flex items-center">
+                                <i class="fa-regular fa-calendar-days mr-1.5 sm:mr-2"></i> Chargement...
+                            </h2>
+                            <button onclick="nextMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
+                                <span class="hidden sm:inline">Suivant</span> <i class="fa-solid fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="p-1 sm:p-4 overflow-x-auto bg-white/80">
+                            <table class="w-full border-collapse text-center table-fixed min-w-[320px] sm:min-w-[550px]">
+                                <thead>
+                                    <tr class="text-[10px] sm:text-xs font-bold text-[#5d4037] border-b-2 border-[#d4c5b0] bg-[#fbf7f0]/80">
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 w-6 sm:w-10 text-gray-400 italic">n°</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Lu</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Ma</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Me</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Je</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Ve</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 text-red-700">Sa</th>
+                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 text-red-700">Di</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="calendar-grid-body" class="divide-y divide-[#e2d5c3]/50 text-xs sm:text-sm"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="p-2 sm:p-3 bg-[#fdfaf5] border-t border-[#d4c5b0] flex flex-wrap justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold text-[#5d4037]">
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-[#722f37] mr-1"></span> Tournoi</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-600 mr-1"></span> Soirée Spéciale</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-purple-600 mr-1"></span> Réunion</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1"></span> Festival</span>
+                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-blue-600 mr-1"></span> Autre</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CRÉATION D'ÉVÉNEMENT (Volet dépliable) -->
                 <div class="lg:col-span-1">
-                    <div class="parchment-card rounded-xl p-4 sm:p-6 sticky top-24">
-                        <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] mb-4 sm:mb-6 border-b-2 border-[#e2d5c3] pb-2 sm:pb-3 brand-font flex items-center">
-                            <i class="fa-solid fa-calendar-plus text-[#722f37] mr-2"></i> Créer un Événement
-                        </h2>
-                        
-                        <form id="propose-event-form" class="space-y-3.5 sm:space-y-5">
+                    <div class="parchment-card rounded-xl p-4 sm:p-6 sticky top-24 transition-all">
+                        <button type="button" onclick="toggleEventForm()" class="w-full flex justify-between items-center text-left focus:outline-none group cursor-pointer">
+                            <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font flex items-center">
+                                <i class="fa-solid fa-calendar-plus text-[#722f37] mr-2"></i> Créer un Événement
+                            </h2>
+                            <i id="event-form-chevron" class="fa-solid fa-chevron-down text-[#722f37] text-lg sm:text-xl transition-transform duration-300"></i>
+                        </button>
+
+                        <form id="propose-event-form" class="space-y-3.5 sm:space-y-5 hidden mt-4 pt-4 border-t border-[#e2d5c3]">
                             <div>
                                 <label for="eventTitle" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Titre de l'événement *</label>
                                 <input type="text" id="eventTitle" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Ex : Tournoi Catan, AG...">
@@ -298,48 +349,6 @@
                         </form>
                     </div>
                 </div>
-
-                <div class="lg:col-span-2">
-                    <div class="parchment-card rounded-xl overflow-hidden shadow-lg border border-[#d4c5b0]">
-                        <div class="bg-gradient-to-r from-[#722f37] to-[#541e24] text-white p-3 sm:p-4 flex justify-between items-center shadow-md">
-                            <button onclick="prevMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
-                                <i class="fa-solid fa-chevron-left mr-1"></i> <span class="hidden sm:inline">Précédent</span>
-                            </button>
-                            <h2 id="calendar-month-year" class="text-base sm:text-2xl font-bold brand-font tracking-wide flex items-center">
-                                <i class="fa-regular fa-calendar-days mr-1.5 sm:mr-2"></i> Chargement...
-                            </h2>
-                            <button onclick="nextMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
-                                <span class="hidden sm:inline">Suivant</span> <i class="fa-solid fa-chevron-right ml-1"></i>
-                            </button>
-                        </div>
-
-                        <div class="p-1 sm:p-4 overflow-x-auto bg-white/80">
-                            <table class="w-full border-collapse text-center table-fixed min-w-[320px] sm:min-w-[550px]">
-                                <thead>
-                                    <tr class="text-[10px] sm:text-xs font-bold text-[#5d4037] border-b-2 border-[#d4c5b0] bg-[#fbf7f0]/80">
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 w-6 sm:w-10 text-gray-400 italic">n°</th>
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Lu</th>
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Ma</th>
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Me</th>
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Je</th>
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1">Ve</th>
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 text-red-700">Sa</th>
-                                        <th class="py-1.5 sm:py-2.5 px-0.5 sm:px-1 text-red-700">Di</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="calendar-grid-body" class="divide-y divide-[#e2d5c3]/50 text-xs sm:text-sm"></tbody>
-                            </table>
-                        </div>
-
-                        <div class="p-2 sm:p-3 bg-[#fdfaf5] border-t border-[#d4c5b0] flex flex-wrap justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold text-[#5d4037]">
-                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-[#722f37] mr-1"></span> Tournoi</span>
-                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-600 mr-1"></span> Soirée Spéciale</span>
-                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-purple-600 mr-1"></span> Réunion</span>
-                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1"></span> Festival</span>
-                            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-blue-600 mr-1"></span> Autre</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -371,7 +380,7 @@
                 </div>
             </div>
 
-            <div id="players-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"></div>
+            <div id="players-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 items-start"></div>
 
             <div id="empty-players-state" class="hidden flex-col items-center justify-center py-12 sm:py-16 text-amber-900/70 parchment-card rounded-2xl border border-[#d4c5b0]">
                 <i class="fa-solid fa-chess-board text-5xl sm:text-7xl mb-3 opacity-40 text-wine"></i>
@@ -430,6 +439,7 @@
         let currentUser = null;
 
         let calendarDate = new Date();
+        const expandedPlayerCards = new Set(); // Maintient l'état ouvert/fermé des listes de joueurs
 
         const typeColorMap = {
             'Tournoi': { badge: 'bg-[#722f37] text-white' },
@@ -458,6 +468,44 @@
 
             if (tabId === 'events-page') renderCalendar();
             if (tabId === 'ludo-page') renderLudoUI();
+        };
+
+        // Volet dépliable : Proposer une table
+        window.toggleTableForm = function() {
+            const form = document.getElementById('propose-table-form');
+            const chevron = document.getElementById('table-form-chevron');
+            if (form) {
+                form.classList.toggle('hidden');
+                if (chevron) chevron.classList.toggle('rotate-180');
+            }
+        };
+
+        // Volet dépliable : Créer un événement
+        window.toggleEventForm = function() {
+            const form = document.getElementById('propose-event-form');
+            const chevron = document.getElementById('event-form-chevron');
+            if (form) {
+                form.classList.toggle('hidden');
+                if (chevron) chevron.classList.toggle('rotate-180');
+            }
+        };
+
+        // Volet dépliable : Carte de joueur
+        window.togglePlayerCard = function(playerId) {
+            const content = document.getElementById(`player-content-${playerId}`);
+            const chevron = document.getElementById(`player-chevron-${playerId}`);
+            if (content) {
+                const isHidden = content.classList.contains('hidden');
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                    if (chevron) chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                    expandedPlayerCards.add(playerId);
+                } else {
+                    content.classList.add('hidden');
+                    if (chevron) chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                    expandedPlayerCards.delete(playerId);
+                }
+            }
         };
 
         window.showToast = function(message, isError = false) {
@@ -584,6 +632,7 @@
                     showToast("Annonce placardée avec succès !");
                     e.target.reset();
                     document.getElementById('tableTime').value = "18:00";
+                    toggleTableForm(); // Replie le formulaire après ajout
                 } catch (error) {
                     console.error(error);
                     showToast("Erreur lors de l'ajout.", true);
@@ -653,13 +702,14 @@
                     const currentPlayersCount = playersList.length;
                     const isFull = currentPlayersCount >= table.maxPlayers;
 
+                    // Formatage compact des joueurs inscrits aux tables en badges individuels
                     const playersHtml = playersList.length === 0 
-                        ? `<li class="text-xs text-amber-800/60 italic py-1">Aucun joueur inscrit pour le moment.</li>`
+                        ? `<span class="text-xs text-amber-800/60 italic">Aucun joueur inscrit.</span>`
                         : playersList.map((p) => `
-                            <li class="flex justify-between items-center py-1 border-b border-[#e2d5c3]/40 last:border-0 text-xs sm:text-sm">
-                                <span><i class="fa-solid fa-user-tag text-xs text-amber-700 mr-1.5"></i><strong>${p}</strong></span>
-                                <button onclick="leaveTable('${table.id}', '${p.replace(/'/g, "\\'")}')" class="text-red-500 hover:text-red-700 font-bold text-sm sm:text-base px-2 rounded hover:bg-red-50 transition-colors" title="Se désinscrire">&times;</button>
-                            </li>
+                            <span class="inline-flex items-center bg-amber-100/90 text-[#3e2723] text-xs font-semibold px-2 py-0.5 rounded-md border border-amber-200/80 shadow-sm">
+                                <i class="fa-solid fa-user text-[10px] text-amber-700 mr-1"></i>${p}
+                                <button onclick="leaveTable('${table.id}', '${p.replace(/'/g, "\\'")}')" class="ml-1.5 text-red-500 hover:text-red-700 font-bold hover:bg-red-100/80 rounded px-1 transition-colors" title="Se désinscrire">&times;</button>
+                            </span>
                         `).join('');
 
                     const card = document.createElement('div');
@@ -683,8 +733,8 @@
                                 ${table.description ? `<p class="text-[#5d4037] mt-2.5 sm:mt-3 bg-[#fdfaf5] p-2.5 sm:p-3 rounded-lg border border-[#e2d5c3] italic text-xs sm:text-sm"><i class="fa-solid fa-quote-left text-gray-300 mr-1.5"></i>${table.description}</p>` : ''}
 
                                 <div class="mt-3 sm:mt-4 bg-[#fbf7f0] p-2.5 sm:p-3 rounded-lg border border-[#e2d5c3]">
-                                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 block mb-1.5"><i class="fa-solid fa-list-check mr-1"></i> Joueurs inscrits :</span>
-                                    <ul class="space-y-1">${playersHtml}</ul>
+                                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 block mb-1.5"><i class="fa-solid fa-list-check mr-1"></i> Joueurs inscrits (${currentPlayersCount}) :</span>
+                                    <div class="flex flex-wrap gap-1.5">${playersHtml}</div>
                                 </div>
 
                                 ${!isFull ? `
@@ -744,6 +794,7 @@
                     document.getElementById('eventTime').value = "18:00";
                     calendarDate = new Date(date);
                     renderCalendar();
+                    toggleEventForm(); // Replie le formulaire après ajout
                 } catch (error) {
                     showToast("Erreur lors de l'ajout.", true);
                 } finally {
@@ -941,6 +992,7 @@
                 try {
                     const docRef = await addDoc(playersColl, { name, pin, createdAt: new Date().toISOString() });
                     saveUnlockedPin(docRef.id, pin);
+                    expandedPlayerCards.add(docRef.id); // Ouvre automatiquement la liste nouvellement créée
                     showToast(`Bienvenue ${name} ! Votre liste est créée.`);
                     closeCreatePlayerModal();
                     e.target.reset();
@@ -960,6 +1012,7 @@
 
                 if (player && (player.pin === pinInput || pinInput === MASTER_PIN)) {
                     saveUnlockedPin(playerId, player.pin);
+                    expandedPlayerCards.add(playerId); // Ouvre la liste au déverrouillage
                     showToast(`Liste de ${player.name} déverrouillée !`);
                     closeUnlockModal();
                     e.target.reset();
@@ -1023,13 +1076,26 @@
             if (!confirm(`Supprimer la liste de ${player.name} et tous ses jeux ?`)) return;
 
             try {
+                // Suppression de tous les jeux associés dans la collection ludo_jeux
                 const playerGames = allGames.filter(g => g.playerId === playerId);
                 for (const g of playerGames) {
                     await deleteDoc(doc(db, 'ludo_jeux', g.id));
                 }
-                await deleteDoc(doc(doc(db, 'ludo_joueurs', playerId)));
+                
+                // Correction du doublon doc(...) qui provoquait l'erreur
+                await deleteDoc(doc(db, 'ludo_joueurs', playerId));
+                
+                // Retrait du verrouillage local et de l'état ouvert
+                const pins = getUnlockedPins();
+                delete pins[playerId];
+                localStorage.setItem('jea_unlocked_pins', JSON.stringify(pins));
+                expandedPlayerCards.delete(playerId);
+
                 showToast(`Liste de ${player.name} supprimée.`);
-            } catch (err) { showToast("Erreur lors de la suppression.", true); }
+            } catch (err) { 
+                console.error("Erreur suppression joueur:", err);
+                showToast("Erreur lors de la suppression.", true); 
+            }
         };
 
         window.handleSearch = () => {
@@ -1121,62 +1187,71 @@
 
             allPlayers.forEach(player => {
                 const isUnlocked = unlockedPins[player.id] === player.pin;
+                const isExpanded = expandedPlayerCards.has(player.id);
                 
                 const playerGames = allGames
                     .filter(g => g.playerId === player.id)
                     .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'fr', { sensitivity: 'base' }));
 
                 const card = document.createElement('div');
-                card.className = "parchment-card rounded-2xl p-3.5 sm:p-5 flex flex-col h-[450px] sm:h-[580px] shadow-md border border-[#d4c5b0] relative overflow-hidden";
+                card.className = "parchment-card rounded-xl p-3 sm:p-3.5 flex flex-col shadow-sm hover:shadow-md border border-[#d4c5b0] relative overflow-hidden transition-all";
 
                 const gamesListHtml = playerGames.length === 0 
-                    ? `<div class="text-xs text-amber-800/60 italic text-center py-6">Aucun jeu dans cette liste.</div>`
+                    ? `<div class="text-xs text-amber-800/60 italic text-center py-3">Aucun jeu enregistré.</div>`
                     : playerGames.map(g => `
-                        <div class="bg-white/90 p-2 sm:p-2.5 rounded-lg border border-[#e2d5c3] shadow-sm flex justify-between items-center text-xs sm:text-sm font-medium text-[#3e2723] hover:border-wine transition-colors">
+                        <div class="bg-white/90 px-2.5 py-1.5 rounded-lg border border-[#e2d5c3] shadow-2xs flex justify-between items-center text-xs font-medium text-[#3e2723] hover:border-wine transition-colors">
                             <span class="truncate pr-2">${g.name}</span>
                             ${isUnlocked ? `
-                                <button onclick="deleteGame('${g.id}', '${player.id}')" class="text-gray-400 hover:text-red-600 font-bold text-sm sm:text-base px-1 transition-colors" title="Retirer ce jeu">&times;</button>
+                                <button onclick="deleteGame('${g.id}', '${player.id}')" class="text-gray-400 hover:text-red-600 font-bold text-sm px-1 transition-colors" title="Retirer ce jeu">&times;</button>
                             ` : ''}
                         </div>
                     `).join('');
 
                 card.innerHTML = `
-                    <div class="flex justify-between items-center pb-2.5 mb-2.5 border-b-2 border-[#d4c5b0]">
-                        <div class="flex items-center space-x-2">
-                            <h3 class="text-lg sm:text-xl font-bold text-wine brand-font truncate max-w-[120px] sm:max-w-[130px]">${player.name}</h3>
-                            <span class="text-[10px] sm:text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200">${playerGames.length} jeux</span>
+                    <div class="flex justify-between items-center cursor-pointer select-none gap-2 py-0.5" onclick="togglePlayerCard('${player.id}')">
+                        <div class="flex items-center space-x-2 min-w-0">
+                            <h3 class="text-sm sm:text-base font-bold text-wine brand-font truncate max-w-[110px] sm:max-w-[130px]" title="${player.name}">${player.name}</h3>
+                            <span class="text-[10px] sm:text-[11px] font-bold text-amber-900 bg-amber-100/90 px-1.5 py-0.5 rounded-md border border-amber-200/80 shrink-0">${playerGames.length} jeux</span>
                         </div>
-                        <div class="flex items-center space-x-1">
-                            ${isUnlocked ? `
-                                <button onclick="lockPlayerList('${player.id}')" class="text-emerald-800 bg-emerald-100 hover:bg-amber-100 hover:text-amber-900 px-2 py-1 rounded-md text-[10px] sm:text-xs font-bold border border-emerald-300 transition-colors flex items-center shadow-sm" title="Verrouiller à nouveau">
-                                    <i class="fa-solid fa-lock-open mr-1"></i>Verrouiller
-                                </button>
-                                <button onclick="deletePlayerList('${player.id}')" class="text-red-500 hover:text-red-700 p-1 text-xs" title="Supprimer la liste">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            ` : `
-                                <button onclick="openUnlockModal('${player.id}', '${player.name.replace(/'/g, "\\'")}')" class="text-amber-800 hover:text-wine bg-amber-50 hover:bg-amber-100 px-2 py-1 rounded-md text-[10px] sm:text-xs font-bold border border-amber-200 transition-colors" title="Déverrouiller avec PIN">
-                                    <i class="fa-solid fa-lock mr-1"></i>Verrouillé
-                                </button>
-                            `}
+                        <div class="flex items-center space-x-1.5 shrink-0">
+                            <div onclick="event.stopPropagation()">
+                                ${isUnlocked ? `
+                                    <button onclick="lockPlayerList('${player.id}')" class="text-emerald-800 bg-emerald-100/90 hover:bg-amber-100 hover:text-amber-900 px-1.5 py-0.5 rounded text-[10px] font-bold border border-emerald-300 transition-colors flex items-center shadow-2xs" title="Verrouiller à nouveau">
+                                        <i class="fa-solid fa-lock-open mr-1 text-[9px]"></i>Ouvert
+                                    </button>
+                                ` : `
+                                    <button onclick="openUnlockModal('${player.id}', '${player.name.replace(/'/g, "\\'")}')" class="text-amber-800 hover:text-wine bg-amber-50 hover:bg-amber-100 px-1.5 py-0.5 rounded text-[10px] font-bold border border-amber-200/80 transition-colors" title="Déverrouiller avec PIN">
+                                        <i class="fa-solid fa-lock mr-1 text-[9px]"></i>PIN
+                                    </button>
+                                `}
+                            </div>
+                            <i id="player-chevron-${player.id}" class="fa-solid ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-wine text-xs transition-transform duration-300"></i>
                         </div>
                     </div>
 
-                    ${isUnlocked ? `
-                        <form onsubmit="event.preventDefault(); addGame('${player.id}', 'input-game-${player.id}');" class="mb-2.5 flex gap-1.5 sm:gap-2">
-                            <input type="text" id="input-game-${player.id}" placeholder="Ajouter un jeu..." class="flex-grow bg-white border border-[#d4c5b0] rounded-lg py-1 px-2.5 text-xs text-[#3e2723] focus:outline-none focus:border-wine">
-                            <button type="submit" class="bg-wine hover:bg-[#541e24] text-white font-bold px-2.5 py-1 rounded-lg text-xs transition-colors shadow">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </form>
-                    ` : `
-                        <div class="mb-2.5 p-1.5 sm:p-2 bg-amber-50/60 rounded-lg border border-amber-200/60 text-[10px] sm:text-[11px] text-amber-900/80 flex items-center">
-                            <i class="fa-solid fa-info-circle mr-1 text-amber-700"></i> Mode lecture seule.
-                        </div>
-                    `}
+                    <div id="player-content-${player.id}" class="${isExpanded ? '' : 'hidden'} mt-2.5 pt-2.5 border-t border-[#e2d5c3]/80">
+                        ${isUnlocked ? `
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-[10px] font-bold uppercase tracking-wide text-amber-900"><i class="fa-solid fa-gear mr-1"></i>Gestion</span>
+                                <button onclick="deletePlayerList('${player.id}')" class="text-red-500 hover:text-red-700 text-[11px] font-bold transition-colors flex items-center" title="Supprimer la liste">
+                                    <i class="fa-solid fa-trash-can mr-1"></i> Supprimer
+                                </button>
+                            </div>
+                            <form onsubmit="event.preventDefault(); addGame('${player.id}', 'input-game-${player.id}');" class="mb-2 flex gap-1.5">
+                                <input type="text" id="input-game-${player.id}" placeholder="Ajouter un jeu..." class="flex-grow bg-white border border-[#d4c5b0] rounded-md py-1 px-2 text-xs text-[#3e2723] focus:outline-none focus:border-wine">
+                                <button type="submit" class="bg-wine hover:bg-[#541e24] text-white font-bold px-2 py-1 rounded-md text-xs transition-colors shadow-2xs">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </form>
+                        ` : `
+                            <div class="mb-2 p-1.5 bg-amber-50/70 rounded-md border border-amber-200/60 text-[10px] text-amber-900/80 flex items-center">
+                                <i class="fa-solid fa-eye mr-1 text-amber-700"></i> Lecture seule.
+                            </div>
+                        `}
 
-                    <div class="flex-1 overflow-y-auto space-y-1.5 sm:space-y-2 pr-1">
-                        ${gamesListHtml}
+                        <div class="max-h-[220px] overflow-y-auto space-y-1 pr-0.5">
+                            ${gamesListHtml}
+                        </div>
                     </div>
                 `;
 
