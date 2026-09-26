@@ -112,10 +112,9 @@
         <span id="toast-message" class="font-medium">Notification</span>
     </div>
 
-    <!-- MODAL : Détails Événement -->
+    <!-- MODAL : Détails Événement (Croix supprimée pour éviter la superposition) -->
     <div id="event-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-3 sm:p-4">
         <div class="parchment-card max-w-lg w-full rounded-2xl shadow-2xl p-4 sm:p-6 relative border-2 border-[#722f37]">
-            <button onclick="closeEventModal()" class="absolute top-2 right-3 text-gray-500 hover:text-red-700 text-2xl font-bold p-1 focus:outline-none">&times;</button>
             <div id="event-modal-content"></div>
         </div>
     </div>
@@ -894,7 +893,7 @@
                             <span class="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider ${colorConfig.badge}">
                                 ${ev.type}
                             </span>
-                            <!-- Cartouche récapitulatif : uniquement l'icône et le chiffre -->
+                            <!-- Cartouche récapitulatif sans le mot INSCRITS -->
                             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide border bg-red-50 text-[#722f37] border-red-200">
                                 <i class="fa-solid fa-users mr-1"></i> ${playersCount}
                             </span>
