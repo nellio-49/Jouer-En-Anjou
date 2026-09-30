@@ -106,6 +106,23 @@
         </div>
     </header>
 
+    <!-- POP-UP D'INFORMATION À L'OUVERTURE -->
+    <div id="info-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+        <div class="parchment-card max-w-md w-full rounded-2xl shadow-2xl p-5 sm:p-6 relative border-2 border-wine text-center">
+            <button onclick="closeInfoModal()" class="absolute top-2 right-3 text-gray-400 hover:text-red-700 text-2xl font-bold transition-colors" title="Fermer">&times;</button>
+            <div class="my-2">
+                <i class="fa-solid fa-circle-info text-wine text-4xl mb-3 block"></i>
+                <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font mb-3">Information importante</h2>
+                <p class="text-sm sm:text-base text-[#5d4037] leading-relaxed mb-6 font-medium">
+                    Pensez à vous inscrire aux soirées jeux du jeudi dans l'agenda de la section «&nbsp;Événements&nbsp;».
+                </p>
+                <button onclick="closeInfoModal()" class="bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-6 rounded-xl transition-colors shadow text-sm sm:text-base">
+                    J'ai compris
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Notifications Toast -->
     <div id="toast" class="fixed bottom-4 right-4 left-4 sm:left-auto transform translate-y-20 opacity-0 transition-all duration-300 z-50 bg-white text-[#3e2723] px-4 py-3 sm:px-6 sm:py-4 rounded-lg shadow-xl border-l-4 border-[#722f37] flex items-center space-x-3 pointer-events-none text-sm">
         <i id="toast-icon" class="fa-solid fa-bell text-[#722f37] text-lg sm:text-xl"></i>
@@ -458,6 +475,12 @@
             'Assemblée / Réunion': { badge: 'bg-purple-600 text-white' },
             'Festival / Salon': { badge: 'bg-emerald-600 text-white' },
             'Autre': { badge: 'bg-blue-600 text-white' }
+        };
+
+        // Fermeture du Pop-up d'information
+        window.closeInfoModal = function() {
+            const modal = document.getElementById('info-modal');
+            if (modal) modal.classList.add('hidden');
         };
 
         // Navigation globale entre Onglets
