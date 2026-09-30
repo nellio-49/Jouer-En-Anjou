@@ -112,10 +112,19 @@
             <button onclick="closeInfoModal()" class="absolute top-2 right-3 text-gray-400 hover:text-red-700 text-2xl font-bold transition-colors" title="Fermer">&times;</button>
             <div class="my-2">
                 <i class="fa-solid fa-circle-info text-wine text-4xl mb-3 block"></i>
-                <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font mb-3">Information importante</h2>
-                <p class="text-sm sm:text-base text-[#5d4037] leading-relaxed mb-6 font-medium">
-                    Pensez à vous inscrire aux soirées jeux du jeudi dans l'agenda de la section «&nbsp;Événements&nbsp;».
-                </p>
+                <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font mb-4">Information</h2>
+                
+                <div class="text-xs sm:text-sm text-[#5d4037] text-left space-y-3 mb-6 font-medium bg-[#fbf7f0] p-3.5 rounded-xl border border-[#e2d5c3]">
+                    <p class="flex items-start">
+                        <span class="text-wine font-bold mr-2 text-base leading-none">•</span>
+                        <span>La création d'une table ou la participation en tant que joueur à l'une d'elles vous inscrit automatiquement à la soirée dédiée.</span>
+                    </p>
+                    <p class="flex items-start">
+                        <span class="text-wine font-bold mr-2 text-base leading-none">•</span>
+                        <span>Un indicateur permet de visualiser directement dans l'agenda le nombre d'inscrits à un événement.</span>
+                    </p>
+                </div>
+
                 <button onclick="closeInfoModal()" class="bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-6 rounded-xl transition-colors shadow text-sm sm:text-base">
                     J'ai compris
                 </button>
@@ -669,13 +678,45 @@
                 btn.disabled = true;
 
                 try {
+                    // La table démarre sans inscription obligatoire pour l'hôte dans sa propre table
                     const docRef = await addDoc(tablesCollection, {
                         gameName, hostName, date, time, maxPlayers,
-                        playersList: [], description, creatorId: currentUser.uid,
+                        playersList: [],
+                        description, creatorId: currentUser.uid,
                         createdAt: new Date().toISOString()
                     });
                     expandedTableCards.add(docRef.id);
-                    showToast("Annonce placardée avec succès !");
+
+                    // Auto-inscription sans doublons de l'hôte à l'événement de la soirée
+                    try {
+                        const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
+                        if (targetEvent) {
+                            const eventRef = doc(db, 'events', targetEvent.id);
+                            await updateDoc(eventRef, { playersList: arrayUnion(hostName) });
+                        } else {
+                            const dateObj = new Date(date + 'T00:00:00');
+                            const isThursday = dateObj.getDay() === 4;
+                            const eventId = isThursday ? `thursday-${date}` : `event-${date}`;
+                            const eventRef = doc(db, 'events', eventId);
+                            
+                            await setDoc(eventRef, {
+                                title: "Soirée jeux",
+                                type: "Soirée jeux",
+                                date: date,
+                                time: "18:00",
+                                location: "Centre Jean Gueguen - Trélazé",
+                                description: "Soirée hebdomadaire du club",
+                                creatorId: 'system',
+                                createdAt: new Date().toISOString(),
+                                playersList: [hostName],
+                                cancelled: false
+                            });
+                        }
+                    } catch (eErr) {
+                        console.error("Erreur auto-inscription événement :", eErr);
+                    }
+
+                    showToast("Annonce placardée et inscription à la soirée enregistrée !");
                     e.target.reset();
                     document.getElementById('tableTime').value = "18:00";
                     toggleTableForm();
@@ -697,7 +738,9 @@
             if (!playerName) return showToast("Saisissez votre nom/pseudo !", true);
 
             const table = currentTables.find(t => t.id === tableId);
-            const playersList = table?.playersList || [];
+            if (!table) return showToast("Table introuvable.", true);
+
+            const playersList = table.playersList || [];
 
             if (playersList.length >= maxPlayers) return showToast("La table est déjà complète !", true);
             if (playersList.includes(playerName)) return showToast("Ce nom est déjà inscrit à la table !", true);
@@ -705,26 +748,111 @@
             try {
                 const tableRef = doc(db, 'tables', tableId);
                 await updateDoc(tableRef, { playersList: arrayUnion(playerName) });
-                showToast(`${playerName} a rejoint la table !`);
+
+                // Auto-inscription du joueur à la soirée globale (sans doublons via arrayUnion)
+                try {
+                    const date = table.date;
+                    const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
+                    if (targetEvent) {
+                        const eventRef = doc(db, 'events', targetEvent.id);
+                        await updateDoc(eventRef, { playersList: arrayUnion(playerName) });
+                    } else {
+                        const dateObj = new Date(date + 'T00:00:00');
+                        const isThursday = dateObj.getDay() === 4;
+                        const eventId = isThursday ? `thursday-${date}` : `event-${date}`;
+                        const eventRef = doc(db, 'events', eventId);
+
+                        await setDoc(eventRef, {
+                            title: "Soirée jeux",
+                            type: "Soirée jeux",
+                            date: date,
+                            time: "18:00",
+                            location: "Centre Jean Gueguen - Trélazé",
+                            description: "Soirée hebdomadaire du club",
+                            creatorId: 'system',
+                            createdAt: new Date().toISOString(),
+                            playersList: [playerName],
+                            cancelled: false
+                        });
+                    }
+                } catch (eErr) {
+                    console.error("Erreur auto-inscription événement :", eErr);
+                }
+
+                showToast(`${playerName} a rejoint la table et est inscrit à la soirée !`);
+                if (inputEl) inputEl.value = '';
             } catch(e) { showToast("Erreur d'inscription.", true); }
         };
 
         window.leaveTable = async function(tableId, playerName) {
             if (!currentUser) return;
             try {
+                const table = currentTables.find(t => t.id === tableId);
+                if (!table) return;
+
                 const tableRef = doc(db, 'tables', tableId);
                 await updateDoc(tableRef, { playersList: arrayRemove(playerName) });
-                showToast(`${playerName} s'est désinscrit.`);
-            } catch(e) { showToast("Erreur lors du retrait.", true); }
+
+                // Vérification : le joueur est-il encore hôte ou joueur sur une AUTRE table cette même date ?
+                const date = table.date;
+                const stillInTables = currentTables.some(t => {
+                    if (t.date !== date) return false;
+                    if (t.id === tableId) {
+                        return t.hostName === playerName; // Reste hôte de cette table
+                    }
+                    return t.hostName === playerName || (t.playersList || []).includes(playerName);
+                });
+
+                // Si plus aucun lien avec aucune table pour cette date, retrait automatique de la soirée
+                if (!stillInTables) {
+                    const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
+                    if (targetEvent) {
+                        const eventRef = doc(db, 'events', targetEvent.id);
+                        await updateDoc(eventRef, { playersList: arrayRemove(playerName) });
+                    }
+                }
+
+                showToast(`${playerName} s'est désinscrit de la table.`);
+            } catch(e) {
+                console.error(e);
+                showToast("Erreur lors du retrait.", true);
+            }
         };
 
         window.deleteTable = async function(tableId) {
             if (!currentUser) return;
             try {
+                const table = currentTables.find(t => t.id === tableId);
+                if (!table) return;
+
+                const date = table.date;
+                const affectedPlayers = new Set([table.hostName, ...(table.playersList || [])]);
+
                 await deleteDoc(doc(db, 'tables', tableId));
                 expandedTableCards.delete(tableId);
+
+                // Vérification des autres tables restantes ce même jour
+                const remainingTables = currentTables.filter(t => t.date === date && t.id !== tableId);
+                const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
+
+                if (targetEvent) {
+                    for (const pName of affectedPlayers) {
+                        const stillInTables = remainingTables.some(t => 
+                            t.hostName === pName || (t.playersList || []).includes(pName)
+                        );
+                        // Si le joueur n'a plus aucune table ce soir-là, on le retire de l'événement
+                        if (!stillInTables) {
+                            const eventRef = doc(db, 'events', targetEvent.id);
+                            await updateDoc(eventRef, { playersList: arrayRemove(pName) });
+                        }
+                    }
+                }
+
                 showToast("Annonce retirée.");
-            } catch(e) { showToast("Erreur de suppression.", true); }
+            } catch(e) {
+                console.error(e);
+                showToast("Erreur de suppression.", true);
+            }
         };
 
         function renderTables() {
