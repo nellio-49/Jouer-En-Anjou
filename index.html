@@ -1127,9 +1127,15 @@
                             eventsContainer.className = "mt-0.5 sm:mt-1 space-y-0.5 sm:space-y-1";
                             dayEvents.forEach(ev => {
                                 const colorConfig = typeColorMap[ev.type] || typeColorMap['Autre'];
+                                const count = (ev.playersList || []).length;
                                 const evBadge = document.createElement('button');
-                                evBadge.className = `w-full text-left text-[9px] sm:text-[11px] font-bold p-0.5 sm:p-1 rounded ${colorConfig.badge} truncate block shadow-sm hover:opacity-90 transition-opacity`;
-                                evBadge.innerHTML = `<span class="opacity-80 hidden sm:inline">${ev.time}</span> ${ev.title}`;
+                                evBadge.className = `w-full text-left text-[9px] sm:text-[11px] font-bold p-0.5 sm:p-1 rounded ${colorConfig.badge} shadow-sm hover:opacity-90 transition-opacity flex items-center justify-between gap-1 min-w-0`;
+                                evBadge.innerHTML = `
+                                    <span class="truncate min-w-0"><span class="opacity-80 hidden sm:inline">${ev.time}</span> ${ev.title}</span>
+                                    <span class="shrink-0 bg-black/20 text-white text-[8px] sm:text-[10px] px-1 py-0.5 rounded-full font-bold flex items-center leading-none" title="${count} inscrit(s)">
+                                        <i class="fa-solid fa-user text-[7px] sm:text-[8px] mr-0.5"></i>${count}
+                                    </span>
+                                `;
                                 evBadge.onclick = (e) => { e.stopPropagation(); openEventModal(ev.id); };
                                 eventsContainer.appendChild(evBadge);
                             });
