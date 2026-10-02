@@ -678,7 +678,6 @@
                 btn.disabled = true;
 
                 try {
-                    // La table démarre sans inscription obligatoire pour l'hôte dans sa propre table
                     const docRef = await addDoc(tablesCollection, {
                         gameName, hostName, date, time, maxPlayers,
                         playersList: [],
@@ -687,7 +686,6 @@
                     });
                     expandedTableCards.add(docRef.id);
 
-                    // Auto-inscription sans doublons de l'hôte à l'événement de la soirée
                     try {
                         const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
                         if (targetEvent) {
@@ -749,7 +747,6 @@
                 const tableRef = doc(db, 'tables', tableId);
                 await updateDoc(tableRef, { playersList: arrayUnion(playerName) });
 
-                // Auto-inscription du joueur à la soirée globale (sans doublons via arrayUnion)
                 try {
                     const date = table.date;
                     const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
@@ -793,17 +790,15 @@
                 const tableRef = doc(db, 'tables', tableId);
                 await updateDoc(tableRef, { playersList: arrayRemove(playerName) });
 
-                // Vérification : le joueur est-il encore hôte ou joueur sur une AUTRE table cette même date ?
                 const date = table.date;
                 const stillInTables = currentTables.some(t => {
                     if (t.date !== date) return false;
                     if (t.id === tableId) {
-                        return t.hostName === playerName; // Reste hôte de cette table
+                        return t.hostName === playerName;
                     }
                     return t.hostName === playerName || (t.playersList || []).includes(playerName);
                 });
 
-                // Si plus aucun lien avec aucune table pour cette date, retrait automatique de la soirée
                 if (!stillInTables) {
                     const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
                     if (targetEvent) {
@@ -831,7 +826,6 @@
                 await deleteDoc(doc(db, 'tables', tableId));
                 expandedTableCards.delete(tableId);
 
-                // Vérification des autres tables restantes ce même jour
                 const remainingTables = currentTables.filter(t => t.date === date && t.id !== tableId);
                 const targetEvent = currentEvents.find(ev => ev.date === date && !ev.cancelled);
 
@@ -840,7 +834,6 @@
                         const stillInTables = remainingTables.some(t => 
                             t.hostName === pName || (t.playersList || []).includes(pName)
                         );
-                        // Si le joueur n'a plus aucune table ce soir-là, on le retire de l'événement
                         if (!stillInTables) {
                             const eventRef = doc(db, 'events', targetEvent.id);
                             await updateDoc(eventRef, { playersList: arrayRemove(pName) });
@@ -1387,6 +1380,31 @@
             } catch (err) { showToast("Erreur lors de l'ajout.", true); }
         };
 
+        // Modification du nom d'un jeu
+        window.editGameName = async (gameId, playerId, currentName) => {
+            const player = allPlayers.find(p => p.id === playerId);
+            const unlockedPins = getUnlockedPins();
+
+            if (!player || unlockedPins[playerId] !== player.pin) {
+                return showToast("Déverrouillez la liste avec votre PIN !", true);
+            }
+
+            const newName = prompt("Nouveau nom du jeu :", currentName);
+            if (newName === null) return;
+            const trimmed = newName.trim();
+            if (!trimmed) return showToast("Le nom du jeu ne peut pas être vide !", true);
+            if (trimmed === currentName) return;
+
+            try {
+                await updateDoc(doc(db, 'ludo_jeux', gameId), { name: trimmed });
+                showToast("Nom du jeu modifié !");
+                focusGameInput(playerId);
+            } catch (err) {
+                console.error("Erreur modification jeu:", err);
+                showToast("Erreur lors de la modification.", true);
+            }
+        };
+
         window.deleteGame = async (gameId, playerId) => {
             const player = allPlayers.find(p => p.id === playerId);
             const unlockedPins = getUnlockedPins();
@@ -1479,7 +1497,7 @@
                 listEl.innerHTML = sortedResults.map(item => `
                     <div class="bg-white p-3 sm:p-4 rounded-xl border border-[#d4c5b0] shadow-sm flex flex-col justify-between">
                         <div>
-                            <h4 class="font-bold text-wine text-sm sm:text-base brand-font mb-1.5 flex items-center">
+                            <h4 class="font-bold text-wine text-sm sm:text-base brand-font mb-1.5 flex items-center" title="${item.displayName.replace(/"/g, '&quot;')}">
                                 <i class="fa-solid fa-dice text-amber-700 mr-1.5"></i>${item.displayName}
                             </h4>
                             <div class="text-xs text-[#5d4037]">
@@ -1528,18 +1546,31 @@
                     .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'fr', { sensitivity: 'base' }));
 
                 const card = document.createElement('div');
-                card.className = "parchment-card rounded-xl p-3 sm:p-3.5 flex flex-col shadow-sm hover:shadow-md border border-[#d4c5b0] relative overflow-hidden transition-all";
+                card.className = "parchment-card rounded-xl p-3 sm:p-3.5 flex flex-col shadow-sm hover:shadow-md border border-[#d4c5b0] relative transition-all";
 
                 const gamesListHtml = playerGames.length === 0 
                     ? `<div class="text-xs text-amber-800/60 italic text-center py-3">Aucun jeu enregistré.</div>`
-                    : playerGames.map(g => `
-                        <div class="bg-white/90 px-2.5 py-1.5 rounded-lg border border-[#e2d5c3] shadow-2xs flex justify-between items-center text-xs font-medium text-[#3e2723] hover:border-wine transition-colors">
-                            <span class="truncate pr-2">${g.name}</span>
-                            ${isUnlocked ? `
-                                <button onclick="deleteGame('${g.id}', '${player.id}')" class="text-gray-400 hover:text-red-600 font-bold text-sm px-1 transition-colors" title="Retirer ce jeu">&times;</button>
-                            ` : ''}
-                        </div>
-                    `).join('');
+                    : playerGames.map(g => {
+                        const safeName = (g.name || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                        return `
+                            <div class="bg-white/90 px-2.5 py-1.5 rounded-lg border border-[#e2d5c3] shadow-2xs flex justify-between items-center text-xs font-medium text-[#3e2723] hover:border-wine transition-colors relative group">
+                                <div class="truncate pr-2 flex-grow min-w-0 ${isUnlocked ? 'cursor-pointer hover:text-wine hover:font-bold' : ''}"
+                                     title="${safeName}"
+                                     ${isUnlocked ? `onclick="editGameName('${g.id}', '${player.id}', '${safeName}')"` : ''}>
+                                    <span class="truncate block">${g.name}</span>
+                                </div>
+                                
+                                <!-- Infobulle Pop-up au survol pour le titre complet -->
+                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1.5 hidden group-hover:block z-50 bg-[#3e2723] text-white text-[11px] font-normal px-2.5 py-1 rounded-md shadow-xl whitespace-nowrap pointer-events-none border border-amber-200/30">
+                                    ${g.name}
+                                </div>
+
+                                ${isUnlocked ? `
+                                    <button onclick="deleteGame('${g.id}', '${player.id}')" class="text-gray-400 hover:text-red-600 font-bold text-sm px-1 transition-colors shrink-0" title="Retirer ce jeu">&times;</button>
+                                ` : ''}
+                            </div>
+                        `;
+                    }).join('');
 
                 card.innerHTML = `
                     <div class="flex justify-between items-center cursor-pointer select-none gap-2 py-0.5" onclick="togglePlayerCard('${player.id}')">
