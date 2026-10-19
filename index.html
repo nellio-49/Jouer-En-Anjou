@@ -99,7 +99,7 @@
                     <img src="JeA1.webp" class="h-12 sm:h-20 w-auto object-contain" alt="Logo Jouer En Anjou" />
                     <div>
                         <span class="brand-font font-bold text-xl sm:text-3xl tracking-wider text-wine drop-shadow-sm block">Jouer En Anjou</span>
-                        <span class="text-[10px] sm:text-xs text-[#8d6e63] font-semibold tracking-widest uppercase">Le donjon du club</span>
+                        <span class="brand-font text-xs sm:text-sm text-[#8d6e63] tracking-wide block">Le donjon du club</span>
                     </div>
                 </div>
 
@@ -128,7 +128,7 @@
             <button onclick="closeInfoModal()" class="absolute top-2 right-3 text-gray-400 hover:text-red-700 text-2xl font-bold transition-colors" title="Fermer">&times;</button>
             <div class="my-2">
                 <i class="fa-solid fa-circle-info text-wine text-4xl mb-3 block"></i>
-                <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font mb-4">Information</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font mb-4">Information</h2>
                 
                 <div class="text-xs sm:text-sm text-[#5d4037] space-y-3 mb-6 font-medium bg-[#fbf7f0] p-3.5 rounded-xl border border-[#e2d5c3]">
                     <p class="flex items-start">
@@ -141,7 +141,7 @@
                     </p>
                 </div>
 
-                <button onclick="closeInfoModal()" class="bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-6 rounded-xl transition-colors shadow text-sm sm:text-base">
+                <button onclick="closeInfoModal()" class="bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-6 rounded-xl transition-colors shadow text-sm sm:text-base brand-font">
                     J'ai compris
                 </button>
             </div>
@@ -178,7 +178,7 @@
                     <input type="password" id="new-player-pin" maxlength="8" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine" placeholder="****">
                     <p class="text-[11px] text-amber-800 mt-1"><i class="fa-solid fa-lock mr-1"></i>Ce code sécurise votre liste. Vous seul pourrez la modifier.</p>
                 </div>
-                <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 rounded-lg hover:bg-[#541e24] transition-colors shadow text-sm sm:text-base">
+                <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 rounded-lg hover:bg-[#541e24] transition-colors shadow text-sm sm:text-base brand-font">
                     Valider et créer ma liste
                 </button>
             </form>
@@ -192,13 +192,13 @@
             <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font mb-2 flex items-center">
                 <i class="fa-solid fa-key text-wine mr-2"></i> Déverrouiller <span id="unlock-player-title" class="ml-1 text-wine"></span>
             </h2>
-            <p class="text-xs text-[#5d4037] mb-4">Entrez votre code PIN secret pour modifier.</p>
+            <p class="brand-font text-xs sm:text-sm text-[#5d4037] mb-4">Entrez votre code PIN secret pour modifier.</p>
             <form id="form-unlock-player" class="space-y-4">
                 <input type="hidden" id="unlock-player-id">
                 <div>
                     <input type="password" id="unlock-player-pin" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-[#3e2723] focus:outline-none focus:border-wine text-center text-lg tracking-widest" placeholder="****">
                 </div>
-                <button type="submit" class="w-full bg-wine text-white font-bold py-2 rounded-lg hover:bg-[#541e24] transition-colors shadow text-sm sm:text-base">
+                <button type="submit" class="w-full bg-wine text-white font-bold py-2 rounded-lg hover:bg-[#541e24] transition-colors shadow text-sm sm:text-base brand-font">
                     Déverrouiller
                 </button>
             </form>
@@ -211,10 +211,10 @@
         <section id="home-page" class="tab-content active">
             <div class="text-center mb-6 sm:mb-8">
                 <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 brand-font max-w-3xl mx-auto leading-snug">
-                    Bienvenue dans l'outil de gestion de Jouer En Anjou
+                    Bienvenue dans l'application de gestion de Jouer En Anjou
                 </h1>
-                <p class="text-xs sm:text-sm text-[#5d4037] max-w-xl mx-auto font-medium">
-                    Organiser vos tables, consulter les rendez-vous ou explorer les jeux du club.
+                <p class="brand-font text-xs sm:text-base text-[#5d4037] max-w-xl mx-auto text-center leading-relaxed">
+                    Sélectionnez un espace pour organiser vos tables, consulter les rendez-vous ou explorer les jeux du club.
                 </p>
             </div>
 
@@ -238,7 +238,7 @@
                             *L'inscription à une table vous ajoute automatiquement à la soirée correspondante sur l'agenda.
                         </p>
                     </div>
-                    <div class="mt-3 pt-2 border-t border-[#e2d5c3] flex items-center justify-between text-xs font-bold text-wine">
+                    <div class="mt-3 pt-2 border-t border-[#e2d5c3] flex items-center justify-between text-xs font-bold text-wine brand-font">
                         <span>Accéder aux tables</span>
                         <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
                     </div>
@@ -259,7 +259,7 @@
                             Agenda du club. Consulter les dates prévues et confirmez votre présence en un clic.
                         </p>
                     </div>
-                    <div class="mt-3 pt-2 border-t border-[#e2d5c3] flex items-center justify-between text-xs font-bold text-wine">
+                    <div class="mt-3 pt-2 border-t border-[#e2d5c3] flex items-center justify-between text-xs font-bold text-wine brand-font">
                         <span>Voir l'agenda</span>
                         <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
                     </div>
@@ -280,7 +280,7 @@
                             La ludothèque partagée du club. Découvrez qui possède quel jeu et partagez les vôtres.
                         </p>
                     </div>
-                    <div class="mt-3 pt-2 border-t border-[#e2d5c3] flex items-center justify-between text-xs font-bold text-wine">
+                    <div class="mt-3 pt-2 border-t border-[#e2d5c3] flex items-center justify-between text-xs font-bold text-wine brand-font">
                         <span>Explorer la ludothèque</span>
                         <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
                     </div>
@@ -291,8 +291,8 @@
         <!-- ONGLET 1 : SOIRÉES JEUX -->
         <section id="tables-page" class="tab-content">
             <div class="text-center mb-6 sm:mb-10">
-                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 sm:mb-4 brand-font">L'Agenda du Club</h1>
-                <p class="text-sm sm:text-lg text-[#5d4037] max-w-2xl mx-auto font-medium">Consulter ou proposer une table de jeu</p>
+                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 sm:mb-3 brand-font">L'Agenda du Club</h1>
+                <p class="brand-font text-sm sm:text-lg text-[#5d4037] max-w-2xl mx-auto text-center leading-relaxed">Consulter ou proposer une table de jeu</p>
             </div>
 
             <div class="grid lg:grid-cols-3 gap-5 lg:gap-8">
@@ -341,7 +341,7 @@
                                 <textarea id="description" rows="2" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Campagne niv 1, ou extension incluse..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3">
+                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3 brand-font">
                                 <i class="fa-solid fa-scroll mr-2"></i> Placarder l'annonce
                             </button>
                         </form>
@@ -362,7 +362,7 @@
                         <div id="empty-state" class="hidden flex-col items-center justify-center py-12 sm:py-16 text-amber-900/70">
                             <i class="fa-solid fa-spider text-5xl sm:text-7xl mb-3 opacity-40"></i>
                             <p class="text-lg sm:text-xl font-bold brand-font text-amber-950/70">Le tableau des quêtes est vide.</p>
-                            <p class="text-sm sm:text-md mt-1 font-medium">Soyez le premier à proposer une table !</p>
+                            <p class="brand-font text-sm sm:text-base mt-1 text-[#5d4037] text-center">Soyez le premier à proposer une table !</p>
                         </div>
                     </div>
                 </div>
@@ -372,13 +372,13 @@
         <!-- ONGLET 2 : ÉVÉNEMENTS DU CLUB -->
         <section id="events-page" class="tab-content">
             <div class="text-center mb-6 sm:mb-10">
-                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 sm:mb-4 brand-font">Événements du club</h1>
-                <p class="text-sm sm:text-lg text-[#5d4037] max-w-2xl mx-auto font-medium">Planifiez, visualisez et inscrivez-vous aux soirées, tournois et festivités du club.</p>
+                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 sm:mb-3 brand-font">Événements du club</h1>
+                <p class="brand-font text-sm sm:text-lg text-[#5d4037] max-w-2xl mx-auto text-center leading-relaxed">Planifiez, visualisez et inscrivez-vous aux soirées, tournois et festivités du club.</p>
                 
                 <!-- BANDEAU EXPLICATIF POUR L'INSCRIPTION -->
                 <div class="inline-flex items-center gap-2 mt-3.5 px-4 py-2 rounded-xl bg-amber-100/90 border border-amber-300/80 text-amber-950 text-xs sm:text-sm font-semibold shadow-2xs">
                     <i class="fa-solid fa-hand-pointer text-wine text-base"></i>
-                    <span>Sélectionnez un événement dans le calendrier pour vous y inscrire.</span>
+                    <span class="brand-font text-xs sm:text-sm">Sélectionnez un événement dans le calendrier pour vous y inscrire.</span>
                 </div>
             </div>
 
@@ -477,7 +477,7 @@
                                 <textarea id="eventDescription" rows="2" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37] focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Informations complémentaires, lots, tarifs..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3">
+                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3 brand-font">
                                 <i class="fa-solid fa-calendar-check mr-2"></i> Ajouter au Calendrier
                             </button>
                         </form>
@@ -491,9 +491,9 @@
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-3 sm:gap-4">
                 <div>
                     <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-1 sm:mb-2 brand-font">Ludothèque du Club</h1>
-                    <p class="text-sm sm:text-lg text-[#5d4037] font-medium">Consultez les listes de jeux des membres et recherchez qui possède quel jeu.</p>
+                    <p class="brand-font text-sm sm:text-lg text-[#5d4037] leading-relaxed">Consultez les listes de jeux des membres et recherchez qui possède quel jeu.</p>
                 </div>
-                <button onclick="openCreatePlayerModal()" class="w-full sm:w-auto bg-wine hover:bg-[#541e24] text-white font-bold py-2 sm:py-2.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center text-xs sm:text-sm whitespace-nowrap">
+                <button onclick="openCreatePlayerModal()" class="w-full sm:w-auto bg-wine hover:bg-[#541e24] text-white font-bold py-2 sm:py-2.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center text-xs sm:text-sm whitespace-nowrap brand-font">
                     <i class="fa-solid fa-user-plus mr-2"></i> Créer ma liste de jeux
                 </button>
             </div>
@@ -519,8 +519,8 @@
             <div id="empty-players-state" class="hidden flex-col items-center justify-center py-12 sm:py-16 text-amber-900/70 parchment-card rounded-2xl border border-[#d4c5b0]">
                 <i class="fa-solid fa-chess-board text-5xl sm:text-7xl mb-3 opacity-40 text-wine"></i>
                 <p class="text-lg sm:text-xl font-bold brand-font text-amber-950/70">Aucune liste de jeu enregistrée.</p>
-                <p class="text-xs sm:text-sm mt-1 font-medium">Soyez le premier à ajouter votre liste !</p>
-                <button onclick="openCreatePlayerModal()" class="mt-4 bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-4 rounded-xl shadow transition-all text-xs sm:text-sm">
+                <p class="brand-font text-xs sm:text-sm mt-1 text-[#5d4037] text-center">Soyez le premier à ajouter votre liste !</p>
+                <button onclick="openCreatePlayerModal()" class="mt-4 bg-wine hover:bg-[#541e24] text-white font-bold py-2 px-4 rounded-xl shadow transition-all text-xs sm:text-sm brand-font">
                     ➕ Créer ma liste
                 </button>
             </div>
@@ -1021,19 +1021,19 @@
                                     <label for="join-input-${table.id}" class="block text-[11px] sm:text-xs font-bold text-[#5d4037] mb-1">Rejoindre cette table :</label>
                                     <div class="flex gap-1.5 sm:gap-2">
                                         <input type="text" id="join-input-${table.id}" placeholder="Votre nom ou pseudo" class="flex-grow min-w-0 bg-white border border-[#d4c5b0] rounded-md py-1 px-2 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37]">
-                                        <button onclick="joinTable('${table.id}', 'join-input-${table.id}',${table.maxPlayers})" class="shrink-0 bg-wine hover:bg-[#541e24] text-white font-bold text-xs px-2.5 sm:px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap">
+                                        <button onclick="joinTable('${table.id}', 'join-input-${table.id}',${table.maxPlayers})" class="shrink-0 bg-wine hover:bg-[#541e24] text-white font-bold text-xs px-2.5 sm:px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap brand-font">
                                             <i class="fa-solid fa-user-plus mr-1"></i> S'inscrire
                                         </button>
                                     </div>
                                 </div>
                             ` : `
-                                <div class="my-2 py-1 text-center bg-red-50 border border-red-200 text-red-700 text-xs font-bold rounded-md">
+                                <div class="my-2 py-1 text-center bg-red-50 border border-red-200 text-red-700 text-xs font-bold rounded-md brand-font">
                                     <i class="fa-solid fa-ban mr-1"></i> Table complète
                                 </div>
                             `}
 
                             <div class="pt-1.5 flex justify-end">
-                                <button onclick="deleteTable('${table.id}')" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-600 font-bold text-xs py-1 px-2.5 rounded-lg transition-colors shadow-2xs flex items-center">
+                                <button onclick="deleteTable('${table.id}')" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-600 font-bold text-xs py-1 px-2.5 rounded-lg transition-colors shadow-2xs flex items-center brand-font">
                                     <i class="fa-solid fa-trash-can mr-1.5"></i> Annuler la table
                                 </button>
                             </div>
@@ -1169,17 +1169,17 @@
                         <label for="join-event-input-${ev.id}" class="block text-[11px] sm:text-xs font-bold text-[#5d4037] mb-1">Participer à cet événement :</label>
                         <div class="flex gap-2">
                             <input type="text" id="join-event-input-${ev.id}" placeholder="Votre nom ou pseudo" class="flex-grow bg-white border border-[#d4c5b0] rounded-md py-1 px-2.5 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-[#722f37]">
-                            <button onclick="joinEvent('${ev.id}', 'join-event-input-${ev.id}')" class="bg-wine hover:bg-[#541e24] text-white font-bold text-xs px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap">
+                            <button onclick="joinEvent('${ev.id}', 'join-event-input-${ev.id}')" class="bg-wine hover:bg-[#541e24] text-white font-bold text-xs px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap brand-font">
                                 <i class="fa-solid fa-user-plus mr-1"></i> S'inscrire
                             </button>
                         </div>
                     </div>
 
                     <div class="pt-2 sm:pt-3 border-t border-[#e2d5c3] flex justify-between items-center gap-2 sm:gap-3">
-                        <button onclick="deleteEvent('${ev.id}')" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-600 font-bold text-xs py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-lg transition-colors flex items-center">
+                        <button onclick="deleteEvent('${ev.id}')" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-600 font-bold text-xs py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-lg transition-colors flex items-center brand-font">
                             <i class="fa-solid fa-trash-can mr-1.5"></i> Supprimer / Annuler
                         </button>
-                        <button onclick="closeEventModal()" class="bg-wine text-white font-bold text-xs py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-[#541e24] transition-colors">
+                        <button onclick="closeEventModal()" class="bg-wine text-white font-bold text-xs py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-[#541e24] transition-colors brand-font">
                             Fermer
                         </button>
                     </div>
@@ -1680,11 +1680,11 @@
                         <div class="flex items-center space-x-1.5 shrink-0">
                             <div onclick="event.stopPropagation()">
                                 ${isUnlocked ? `
-                                    <button onclick="lockPlayerList('${player.id}')" class="text-emerald-800 bg-emerald-100/90 hover:bg-amber-100 hover:text-amber-900 px-1.5 py-0.5 rounded text-[10px] font-bold border border-emerald-300 transition-colors flex items-center shadow-2xs" title="Verrouiller à nouveau">
+                                    <button onclick="lockPlayerList('${player.id}')" class="text-emerald-800 bg-emerald-100/90 hover:bg-amber-100 hover:text-amber-900 px-1.5 py-0.5 rounded text-[10px] font-bold border border-emerald-300 transition-colors flex items-center shadow-2xs brand-font" title="Verrouiller à nouveau">
                                         <i class="fa-solid fa-lock-open mr-1 text-[9px]"></i>Ouvert
                                     </button>
                                 ` : `
-                                    <button onclick="openUnlockModal('${player.id}', '${player.name.replace(/'/g, "\\'")}')" class="text-amber-800 hover:text-wine bg-amber-50 hover:bg-amber-100 px-1.5 py-0.5 rounded text-[10px] font-bold border border-amber-200/80 transition-colors" title="Déverrouiller avec PIN">
+                                    <button onclick="openUnlockModal('${player.id}', '${player.name.replace(/'/g, "\\'")}')" class="text-amber-800 hover:text-wine bg-amber-50 hover:bg-amber-100 px-1.5 py-0.5 rounded text-[10px] font-bold border border-amber-200/80 transition-colors brand-font" title="Déverrouiller avec PIN">
                                         <i class="fa-solid fa-lock mr-1 text-[9px]"></i>PIN
                                     </button>
                                 `}
@@ -1697,7 +1697,7 @@
                         ${isUnlocked ? `
                             <div class="flex justify-between items-center mb-2">
                                 <span class="text-[10px] font-bold uppercase tracking-wide text-amber-900"><i class="fa-solid fa-gear mr-1"></i>Gestion</span>
-                                <button onclick="deletePlayerList('${player.id}')" class="text-red-500 hover:text-red-700 text-[11px] font-bold transition-colors flex items-center" title="Supprimer la liste">
+                                <button onclick="deletePlayerList('${player.id}')" class="text-red-500 hover:text-red-700 text-[11px] font-bold transition-colors flex items-center brand-font" title="Supprimer la liste">
                                     <i class="fa-solid fa-trash-can mr-1"></i> Supprimer
                                 </button>
                             </div>
