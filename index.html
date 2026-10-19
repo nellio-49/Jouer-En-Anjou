@@ -82,7 +82,7 @@
     <header class="header-bg shadow-sm sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row justify-between items-center py-2.5 lg:h-24 gap-3 lg:gap-0">
-                <div class="flex items-center space-x-3 sm:space-x-4">
+                <div class="flex items-center space-x-3 sm:space-x-4 cursor-pointer" onclick="switchTab('home-page')">
                     <img src="JeA1.webp" class="h-12 sm:h-20 w-auto object-contain" alt="Logo Jouer En Anjou" />
                     <div>
                         <span class="brand-font font-bold text-xl sm:text-3xl tracking-wider text-wine drop-shadow-sm block">Jouer En Anjou</span>
@@ -90,13 +90,16 @@
                     </div>
                 </div>
 
-                <!-- Navigation en haut à droite (3 Onglets) -->
+                <!-- Navigation en haut à droite (4 Onglets) -->
                 <nav class="flex flex-wrap justify-center items-center bg-[#f0e6d2]/80 p-1 rounded-xl border border-[#d4c5b0] gap-1 shadow-sm w-full sm:w-auto">
-                    <button onclick="switchTab('tables-page')" id="nav-tables" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center">
+                    <button onclick="switchTab('home-page')" id="nav-home" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center">
+                        <i class="fa-solid fa-door-open mr-1.5"></i> Accueil
+                    </button>
+                    <button onclick="switchTab('tables-page')" id="nav-tables" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center">
                         <i class="fa-solid fa-dice-d6 mr-1.5"></i> Soirées Jeux
                     </button>
                     <button onclick="switchTab('events-page')" id="nav-events" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center">
-                        <i class="fa-solid fa-calendar-star mr-1.5"></i> Événements
+                        <i class="fa-solid fa-bullhorn mr-1.5"></i> Événements
                     </button>
                     <button onclick="switchTab('ludo-page')" id="nav-ludo" class="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center">
                         <i class="fa-solid fa-boxes-stacked mr-1.5"></i> Ludothèque
@@ -155,7 +158,7 @@
             <form id="form-create-player" class="space-y-3.5 sm:space-y-4">
                 <div>
                     <label for="new-player-name" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Votre Nom / Pseudo *</label>
-                    <input type="text" id="new-player-name" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine" placeholder="Ex: Marc">
+                    <input type="text" id="new-player-name" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine" placeholder="Ex : Marc">
                 </div>
                 <div>
                     <label for="new-player-pin" class="block text-xs sm:text-sm font-bold text-[#5d4037] mb-1">Code PIN secret *</label>
@@ -191,8 +194,86 @@
 
     <main class="flex-grow max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-10 w-full">
         
+        <!-- ONGLET 0 : ACCUEIL -->
+        <section id="home-page" class="tab-content active">
+            <div class="text-center mb-8 sm:mb-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#722f37]/10 text-wine mb-4 shadow-sm border border-[#e2d5c3]">
+                    <i class="fa-solid fa-door-open text-3xl sm:text-4xl"></i>
+                </div>
+                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-3 brand-font max-w-3xl mx-auto leading-snug">
+                    Bienvenue dans l'application de gestion de Jouer En Anjou
+                </h1>
+                <p class="text-sm sm:text-base text-[#5d4037] max-w-xl mx-auto font-medium">
+                    Sélectionnez un espace pour organiser vos tables, consulter les rendez-vous ou explorer les jeux du club.
+                </p>
+            </div>
+
+            <!-- Cartouches de redirection vers les 3 sections -->
+            <div class="grid md:grid-cols-3 gap-5 lg:gap-8 max-w-5xl mx-auto">
+                <!-- Cartouche Soirées Jeux -->
+                <div onclick="switchTab('tables-page')" class="parchment-card rounded-2xl p-5 sm:p-6 border-2 border-[#d4c5b0] hover:border-wine hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-100/90 text-wine flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform shadow-2xs">
+                            <i class="fa-solid fa-dice-d6"></i>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font mb-2 group-hover:text-wine transition-colors">
+                            Soirées Jeux
+                        </h2>
+                        <p class="text-sm text-[#5d4037] font-medium mb-3">
+                            Proposez une table de jeu ou rejoignez en une.
+                        </p>
+                        <p class="text-xs text-amber-900/90 italic bg-[#fbf7f0] p-2.5 rounded-lg border border-[#e2d5c3]">
+                            *L'inscription à une table vous ajoute automatiquement à la soirée correspondante sur l'agenda.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-[#e2d5c3] flex items-center text-xs font-bold text-wine">
+                        <span>Accéder aux tables</span>
+                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1.5 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Cartouche Événements -->
+                <div onclick="switchTab('events-page')" class="parchment-card rounded-2xl p-5 sm:p-6 border-2 border-[#d4c5b0] hover:border-wine hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-100/90 text-wine flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform shadow-2xs">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font mb-2 group-hover:text-wine transition-colors">
+                            Événements
+                        </h2>
+                        <p class="text-sm text-[#5d4037] font-medium">
+                            Agenda du club. Consulter les dates prévues et confirmez votre présence en un clic.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-[#e2d5c3] flex items-center text-xs font-bold text-wine">
+                        <span>Voir l'agenda</span>
+                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1.5 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Cartouche Ludothèque -->
+                <div onclick="switchTab('ludo-page')" class="parchment-card rounded-2xl p-5 sm:p-6 border-2 border-[#d4c5b0] hover:border-wine hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-100/90 text-wine flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform shadow-2xs">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-[#3e2723] brand-font mb-2 group-hover:text-wine transition-colors">
+                            Ludothèque
+                        </h2>
+                        <p class="text-sm text-[#5d4037] font-medium">
+                            La ludothèque partagée du club. Découvrez qui possède quel jeu et partagez les vôtres.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-[#e2d5c3] flex items-center text-xs font-bold text-wine">
+                        <span>Explorer la ludothèque</span>
+                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1.5 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ONGLET 1 : SOIRÉES JEUX -->
-        <section id="tables-page" class="tab-content active">
+        <section id="tables-page" class="tab-content">
             <div class="text-center mb-6 sm:mb-10">
                 <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 sm:mb-4 brand-font">L'Agenda du Club</h1>
                 <p class="text-sm sm:text-lg text-[#5d4037] max-w-2xl mx-auto font-medium">Consulter ou proposer une table de jeu</p>
@@ -493,12 +574,13 @@
             if (modal) modal.classList.add('hidden');
         };
 
-        // Navigation globale entre Onglets
+        // Navigation globale entre Onglets (Accueil inclus)
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             const target = document.getElementById(tabId);
             if (target) target.classList.add('active');
 
+            const navHome = document.getElementById('nav-home');
             const navTables = document.getElementById('nav-tables');
             const navEvents = document.getElementById('nav-events');
             const navLudo = document.getElementById('nav-ludo');
@@ -506,6 +588,7 @@
             const activeClass = "px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all bg-[#722f37] text-white shadow-sm flex items-center";
             const inactiveClass = "px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm transition-all text-[#5d4037] hover:text-[#722f37] hover:bg-white/80 flex items-center";
 
+            if (navHome) navHome.className = tabId === 'home-page' ? activeClass : inactiveClass;
             if (navTables) navTables.className = tabId === 'tables-page' ? activeClass : inactiveClass;
             if (navEvents) navEvents.className = tabId === 'events-page' ? activeClass : inactiveClass;
             if (navLudo) navLudo.className = tabId === 'ludo-page' ? activeClass : inactiveClass;
