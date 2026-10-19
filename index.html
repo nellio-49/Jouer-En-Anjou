@@ -26,8 +26,8 @@
 
         body {
             font-family: 'Lora', serif;
-            background-color: #2b1d16;
-            background-image: linear-gradient(rgba(20, 14, 10, 0.45), rgba(20, 14, 10, 0.45)), url('JeA1.webp');
+            background-color: #fbf7f0; /* Teinte claire d'origine autour de l'image */
+            background-image: linear-gradient(rgba(20, 14, 10, 0.40), rgba(20, 14, 10, 0.40)), url('JeA1.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -35,7 +35,7 @@
             color: #3e2723;
         }
 
-        /* Titres principaux sur fond sombre (forme médiévale et couleur ivoire claire) */
+        /* Titres principaux sur fond sombre */
         .page-title {
             font-family: 'MedievalSharp', cursive, serif !important;
             color: var(--texte-clair-titre) !important;
@@ -68,6 +68,12 @@
             font-family: 'MedievalSharp', cursive, serif !important;
             color: var(--couleur-medievale) !important;
             letter-spacing: 0.02em;
+        }
+
+        /* Maintien du mois de l'agenda en blanc */
+        #calendar-month-year {
+            color: #ffffff !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
         }
 
         .parchment-card p,
@@ -429,13 +435,13 @@
                 <div class="lg:col-span-2">
                     <div class="parchment-card rounded-xl overflow-hidden shadow-lg border border-[#d4c5b0]">
                         <div class="bg-gradient-to-r from-[#54141e] to-[#3b0d14] text-white p-3 sm:p-4 flex justify-between items-center shadow-md">
-                            <button onclick="prevMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
+                            <button onclick="prevMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm text-white">
                                 <i class="fa-solid fa-chevron-left mr-1"></i> <span class="hidden sm:inline">Précédent</span>
                             </button>
-                            <h2 id="calendar-month-year" class="text-base sm:text-2xl font-bold brand-font tracking-wide flex items-center text-white !text-white">
+                            <h2 id="calendar-month-year" class="text-base sm:text-2xl font-bold brand-font tracking-wide flex items-center">
                                 <i class="fa-regular fa-calendar-days mr-1.5 sm:mr-2"></i> Chargement...
                             </h2>
-                            <button onclick="nextMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm">
+                            <button onclick="nextMonth()" class="hover:bg-white/20 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors flex items-center font-bold text-xs sm:text-sm text-white">
                                 <span class="hidden sm:inline">Suivant</span> <i class="fa-solid fa-chevron-right ml-1"></i>
                             </button>
                         </div>
@@ -528,7 +534,7 @@
             </div>
         </section>
 
-        <!-- ONGLET 3 : LUDOTHÈQUE DU CLUB (Titre centré harmonisé) -->
+        <!-- ONGLET 3 : LUDOTHÈQUE DU CLUB -->
         <section id="ludo-page" class="tab-content">
             <div class="text-center mb-6 sm:mb-10">
                 <h1 class="page-title text-2xl sm:text-4xl font-bold mb-1 sm:mb-2">Ludothèque du Club</h1>
