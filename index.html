@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=MedievalSharp&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -27,7 +27,8 @@
             color: #3e2723;
         }
         h1, h2, h3, h4, .brand-font {
-            font-family: 'Cinzel', serif;
+            font-family: 'MedievalSharp', cursive, serif;
+            letter-spacing: 0.02em;
         }
         p {
             text-align: justify;
@@ -209,11 +210,11 @@
         <!-- ONGLET 0 : ACCUEIL -->
         <section id="home-page" class="tab-content active">
             <div class="text-center mb-6 sm:mb-8">
-                <h1 class="text-xl sm:text-3xl font-bold text-wine mb-2 brand-font max-w-3xl mx-auto leading-snug">
-                    Bienvenue dans l'outil de gestion de Jouer En Anjou
+                <h1 class="text-2xl sm:text-4xl font-bold text-wine mb-2 brand-font max-w-3xl mx-auto leading-snug">
+                    Bienvenue dans l'application de gestion de Jouer En Anjou
                 </h1>
                 <p class="text-xs sm:text-sm text-[#5d4037] max-w-xl mx-auto font-medium">
-                    Organiser vos tables de jeux, consulter les rendez-vous ou explorer les jeux du club.
+                    Sélectionnez un espace pour organiser vos tables, consulter les rendez-vous ou explorer les jeux du club.
                 </p>
             </div>
 
@@ -226,7 +227,7 @@
                             <div class="w-8 h-8 rounded-lg bg-amber-100/90 text-wine flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
                                 <i class="fa-solid fa-dice-d6"></i>
                             </div>
-                            <h2 class="text-base sm:text-lg font-bold text-[#3e2723] brand-font group-hover:text-wine transition-colors leading-tight">
+                            <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font group-hover:text-wine transition-colors leading-tight">
                                 Soirées Jeux
                             </h2>
                         </div>
@@ -250,7 +251,7 @@
                             <div class="w-8 h-8 rounded-lg bg-amber-100/90 text-wine flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
                                 <i class="fa-solid fa-bullhorn"></i>
                             </div>
-                            <h2 class="text-base sm:text-lg font-bold text-[#3e2723] brand-font group-hover:text-wine transition-colors leading-tight">
+                            <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font group-hover:text-wine transition-colors leading-tight">
                                 Événements
                             </h2>
                         </div>
@@ -271,7 +272,7 @@
                             <div class="w-8 h-8 rounded-lg bg-amber-100/90 text-wine flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
                                 <i class="fa-solid fa-boxes-stacked"></i>
                             </div>
-                            <h2 class="text-base sm:text-lg font-bold text-[#3e2723] brand-font group-hover:text-wine transition-colors leading-tight">
+                            <h2 class="text-lg sm:text-xl font-bold text-[#3e2723] brand-font group-hover:text-wine transition-colors leading-tight">
                                 Ludothèque
                             </h2>
                         </div>
@@ -986,7 +987,7 @@
                         <div class="flex justify-between items-start cursor-pointer select-none gap-2 min-w-0" onclick="toggleTableCard('${table.id}')">
                             <div class="flex-grow min-w-0">
                                 <div class="flex flex-wrap items-start justify-between gap-1.5 sm:gap-2 mb-1 min-w-0">
-                                    <h3 class="text-sm sm:text-xl font-bold text-[#3e2723] brand-font break-words min-w-0 flex-1 leading-snug">${table.gameName}</h3>
+                                    <h3 class="text-base sm:text-xl font-bold text-[#3e2723] brand-font break-words min-w-0 flex-1 leading-snug">${table.gameName}</h3>
                                     <span class="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide border ${isFull ? 'bg-red-50 text-red-700 border-red-200' : 'bg-red-50 text-[#722f37] border-red-200'}">
                                         <i class="fa-solid fa-users mr-1"></i> ${currentPlayersCount} / ${table.maxPlayers}
                                     </span>
