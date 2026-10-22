@@ -59,15 +59,23 @@
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
 
-        /* Titres à l'intérieur des cartes en parchemin */
+        /* Typographie MedievalSharp pour les titres et la classe brand-font */
         .parchment-card h1,
         .parchment-card h2,
         .parchment-card h3,
         .parchment-card h4,
         .parchment-card .brand-font {
             font-family: 'MedievalSharp', cursive, serif !important;
-            color: var(--couleur-medievale) !important;
             letter-spacing: 0.02em;
+        }
+
+        /* Couleur pourpre royal par défaut, sauf sur les boutons/cartouches colorés */
+        .parchment-card h1,
+        .parchment-card h2,
+        .parchment-card h3,
+        .parchment-card h4,
+        .parchment-card .brand-font:not(.bg-wine) {
+            color: var(--couleur-medievale) !important;
         }
 
         /* Maintien du mois de l'agenda en blanc */
@@ -102,7 +110,10 @@
         }
 
         .text-wine { color: var(--couleur-medievale); }
-        .bg-wine { background-color: var(--couleur-medievale); }
+        .bg-wine { 
+            background-color: var(--couleur-medievale); 
+            color: var(--texte-clair-titre) !important; /* Force la couleur ivoire sur les cartouches */
+        }
         .bg-wine:hover { background-color: var(--couleur-medievale-foncee); }
         .border-wine { border-color: var(--couleur-medievale); }
         
@@ -190,7 +201,7 @@
                     </p>
                 </div>
 
-                <button onclick="closeInfoModal()" class="bg-wine hover:bg-[#3b0d14] text-white font-bold py-2 px-6 rounded-xl transition-colors shadow text-sm sm:text-base brand-font">
+                <button onclick="closeInfoModal()" class="bg-wine hover:bg-[#3b0d14] font-bold py-2 px-6 rounded-xl transition-colors shadow text-sm sm:text-base brand-font">
                     J'ai compris
                 </button>
             </div>
@@ -227,7 +238,7 @@
                     <input type="password" id="new-player-pin" maxlength="8" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine" placeholder="****">
                     <p class="text-[11px] text-amber-900 mt-1"><i class="fa-solid fa-lock mr-1"></i>Ce code sécurise votre liste. Vous seul pourrez la modifier.</p>
                 </div>
-                <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 rounded-lg hover:bg-[#3b0d14] transition-colors shadow text-sm sm:text-base brand-font">
+                <button type="submit" class="w-full bg-wine font-bold py-2.5 rounded-lg hover:bg-[#3b0d14] transition-colors shadow text-sm sm:text-base brand-font">
                     Valider et créer ma liste
                 </button>
             </form>
@@ -247,7 +258,7 @@
                 <div>
                     <input type="password" id="unlock-player-pin" required class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 px-3 text-[#3e2723] focus:outline-none focus:border-wine text-center text-lg tracking-widest" placeholder="****">
                 </div>
-                <button type="submit" class="w-full bg-wine text-white font-bold py-2 rounded-lg hover:bg-[#3b0d14] transition-colors shadow text-sm sm:text-base brand-font">
+                <button type="submit" class="w-full bg-wine font-bold py-2 rounded-lg hover:bg-[#3b0d14] transition-colors shadow text-sm sm:text-base brand-font">
                     Déverrouiller
                 </button>
             </form>
@@ -390,7 +401,7 @@
                                 <textarea id="description" rows="2" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Campagne niv 1, ou extension incluse..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3 brand-font">
+                            <button type="submit" class="w-full bg-wine font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3 brand-font">
                                 <i class="fa-solid fa-scroll mr-2"></i> Placarder l'annonce
                             </button>
                         </form>
@@ -525,7 +536,7 @@
                                 <textarea id="eventDescription" rows="2" class="w-full bg-white border border-[#d4c5b0] rounded-md py-2 sm:py-2.5 px-3 text-sm text-[#3e2723] focus:outline-none focus:border-wine focus:ring-2 focus:ring-red-100 transition-colors shadow-sm" placeholder="Informations complémentaires, lots, tarifs..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-wine text-white font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3 brand-font">
+                            <button type="submit" class="w-full bg-wine font-bold py-2.5 sm:py-3 px-4 rounded-md transition-colors duration-200 shadow-md flex justify-center items-center text-base sm:text-lg mt-3 brand-font">
                                 <i class="fa-solid fa-calendar-check mr-2"></i> Ajouter au Calendrier
                             </button>
                         </form>
@@ -541,7 +552,7 @@
                 <p class="page-subtitle text-sm sm:text-lg max-w-2xl mx-auto text-center leading-relaxed">Consultez les listes de jeux des membres et recherchez qui possède quel jeu.</p>
                 
                 <div class="mt-4 flex justify-center">
-                    <button onclick="openCreatePlayerModal()" class="bg-wine hover:bg-[#3b0d14] text-white font-bold py-2 sm:py-2.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center text-xs sm:text-sm whitespace-nowrap brand-font">
+                    <button onclick="openCreatePlayerModal()" class="bg-wine hover:bg-[#3b0d14] font-bold py-2 sm:py-2.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center text-xs sm:text-sm whitespace-nowrap brand-font">
                         <i class="fa-solid fa-user-plus mr-2"></i> Créer ma liste de jeux
                     </button>
                 </div>
@@ -569,7 +580,7 @@
                 <i class="fa-solid fa-chess-board text-5xl sm:text-7xl mb-3 opacity-40 text-wine"></i>
                 <p class="text-lg sm:text-xl font-bold brand-font">Aucune liste de jeu enregistrée.</p>
                 <p class="brand-font text-xs sm:text-sm mt-1 text-center">Soyez le premier à ajouter votre liste !</p>
-                <button onclick="openCreatePlayerModal()" class="mt-4 bg-wine hover:bg-[#3b0d14] text-white font-bold py-2 px-4 rounded-xl shadow transition-all text-xs sm:text-sm brand-font">
+                <button onclick="openCreatePlayerModal()" class="mt-4 bg-wine hover:bg-[#3b0d14] font-bold py-2 px-4 rounded-xl shadow transition-all text-xs sm:text-sm brand-font">
                     ➕ Créer ma liste
                 </button>
             </div>
@@ -605,12 +616,12 @@
 
         // CONFIGURATION FIREBASE PROJET JOUER EN ANJOU
         const firebaseConfig = {
-          apiKey: "AIzaSyCie3gb4zM7atc2SNZcXBDF2GoTIjkhdEg",
-          authDomain: "jouer-en-anjou.firebaseapp.com",
-          projectId: "jouer-en-anjou",
-          storageBucket: "jouer-en-anjou.firebasestorage.app",
-          messagingSenderId: "751049094066",
-          appId: "1:751049094066:web:6dc1d49fc06e4cb7386aab"
+            apiKey: "AIzaSyCie3gb4zM7atc2SNZcXBDF2GoTIjkhdEg",
+            authDomain: "jouer-en-anjou.firebaseapp.com",
+            projectId: "jouer-en-anjou",
+            storageBucket: "jouer-en-anjou.firebasestorage.app",
+            messagingSenderId: "751049094066",
+            appId: "1:751049094066:web:6dc1d49fc06e4cb7386aab"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -1065,7 +1076,7 @@
                                     <label for="join-input-${table.id}" class="block text-[11px] sm:text-xs font-bold mb-1">Rejoindre cette table :</label>
                                     <div class="flex gap-1.5 sm:gap-2">
                                         <input type="text" id="join-input-${table.id}" placeholder="Votre nom ou pseudo" class="flex-grow min-w-0 bg-white border border-[#d4c5b0] rounded-md py-1 px-2 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-wine">
-                                        <button onclick="joinTable('${table.id}', 'join-input-${table.id}',${table.maxPlayers})" class="shrink-0 bg-wine hover:bg-[#3b0d14] text-white font-bold text-xs px-2.5 sm:px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap brand-font">
+                                        <button onclick="joinTable('${table.id}', 'join-input-${table.id}',${table.maxPlayers})" class="shrink-0 bg-wine hover:bg-[#3b0d14] font-bold text-xs px-2.5 sm:px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap brand-font">
                                             <i class="fa-solid fa-user-plus mr-1"></i> S'inscrire
                                         </button>
                                     </div>
@@ -1213,7 +1224,7 @@
                         <label for="join-event-input-${ev.id}" class="block text-[11px] sm:text-xs font-bold mb-1">Participer à cet événement :</label>
                         <div class="flex gap-2">
                             <input type="text" id="join-event-input-${ev.id}" placeholder="Votre nom ou pseudo" class="flex-grow bg-white border border-[#d4c5b0] rounded-md py-1 px-2.5 text-xs sm:text-sm text-[#3e2723] focus:outline-none focus:border-wine">
-                            <button onclick="joinEvent('${ev.id}', 'join-event-input-${ev.id}')" class="bg-wine hover:bg-[#3b0d14] text-white font-bold text-xs px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap brand-font">
+                            <button onclick="joinEvent('${ev.id}', 'join-event-input-${ev.id}')" class="bg-wine hover:bg-[#3b0d14] font-bold text-xs px-3 py-1 rounded-md transition-colors shadow-2xs flex items-center whitespace-nowrap brand-font">
                                 <i class="fa-solid fa-user-plus mr-1"></i> S'inscrire
                             </button>
                         </div>
@@ -1223,7 +1234,7 @@
                         <button onclick="deleteEvent('${ev.id}')" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-600 font-bold text-xs py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-lg transition-colors flex items-center brand-font">
                             <i class="fa-solid fa-trash-can mr-1.5"></i> Supprimer / Annuler
                         </button>
-                        <button onclick="closeEventModal()" class="bg-wine text-white font-bold text-xs py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-[#3b0d14] transition-colors brand-font">
+                        <button onclick="closeEventModal()" class="bg-wine font-bold text-xs py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-[#3b0d14] transition-colors brand-font">
                             Fermer
                         </button>
                     </div>
@@ -1745,7 +1756,7 @@
                             </div>
                             <form onsubmit="event.preventDefault(); addGame('${player.id}', 'input-game-${player.id}');" class="mb-2 flex gap-1.5">
                                 <input type="text" id="input-game-${player.id}" placeholder="Ajouter un jeu..." class="flex-grow bg-white border border-[#d4c5b0] rounded-md py-1 px-2 text-xs text-[#3e2723] focus:outline-none focus:border-wine">
-                                <button type="submit" class="bg-wine hover:bg-[#3b0d14] text-white font-bold px-2 py-1 rounded-md text-xs transition-colors shadow-2xs">
+                                <button type="submit" class="bg-wine hover:bg-[#3b0d14] font-bold px-2 py-1 rounded-md text-xs transition-colors shadow-2xs">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </form>
